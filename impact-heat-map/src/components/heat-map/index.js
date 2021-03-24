@@ -3,8 +3,8 @@ import React, { useCallback, useEffect, useState } from 'react'
 import Spinner from 'react-spinkit'
 import { ResponsiveHeatMap } from '@nivo/heatmap'
 
-import ChartTooltip from '../tooltip'
-import { COLORS, COLOR_SCHEMES } from '../../../../constants'
+//import ChartTooltip from '../tooltip'
+//import { COLORS, COLOR_SCHEMES } from '../../../../constants'
 
 import './index.css'
 
@@ -55,3 +55,4 @@ const PrismHeatMap = (props) => {
   )
 
 }
+export default PrismHeatMap;
