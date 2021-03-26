@@ -1,0 +1,14 @@
+
+.text-block-container {
+  padding: 20px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #323338;
+  background: #FFFFFF;
+  vertical=align: middle;
+}
+
+.text-block-container p {
+  font-size: 16px;
+}

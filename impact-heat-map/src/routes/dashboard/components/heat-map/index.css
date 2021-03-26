@@ -1,0 +1,27 @@
+.heat-map-container {
+  margin-left: 5px;
+  height: 800px;
+}
+
+.Modal {
+  position: absolute;
+  top: 170px;
+  left: 300px;
+  right: 0px;
+  bottom: 200px;
+  width: 70%;
+  height: 50%;
+  overflow: auto;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  border: 4px solid black;
+}
+
+.close-btn {
+  position: relative;
+  float: right;
+  border-radius: 5px;
+  background-color: white;
+  margin-right: 30px;
+  margin-top: 0px;
+}
