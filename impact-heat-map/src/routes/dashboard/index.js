@@ -139,6 +139,7 @@ function DashboardRoute(props) {
         for (let key of Object.keys(alldata)){
           let single = alldata[key]
           single["setting"] = key
+          console.log('check: ', alldata[key])
           single["data"] = all
 
           heat_data.push(single)
@@ -150,7 +151,6 @@ function DashboardRoute(props) {
               item[j] = 0
             }
           }
-
         }
         heat_result["data"] = heat_data
 
@@ -197,24 +197,17 @@ function DashboardRoute(props) {
 
 
 
-              <Row>
-                <Col>
-                  <Row>
-                    <Col>
+              
+
                       <PrismHeatMap
                         data={heatMapData}
                         keys={heatMapKeys}
                       />
-                      <PrismHeatMap
-                        data={[{"setting": "AD","hot dog": 11}, {"setting": "AB","hot dog": 9}, {"setting": "AC","hot dog": 10}, {"setting": "AA","hot dog": 12}, {"setting": "AB","hot dog": 0}]}
-                        keys={["hot dog"]}
-                      />
-                    </Col>
-                  </Row>
 
 
-                </Col>
-              </Row>
+
+
+
 
           </div>
         </div>

@@ -22,22 +22,25 @@ import "react-tabulator/css/bootstrap/tabulator_bootstrap.min.css"; // use Theme
 
 
 
+
+
   let columns = [
-    { title: "Authors", field: "Authors", hozAlign: "left", width: 150 },
-    { title: "Year", field: "Year", hozAlign: "left", width: 150 },
-    { title: "Title", field: "Title", hozAlign: "left", width: 150 },
-    { title: "Location", field: "Location", hozAlign: "left", width: 150 },
-    { title: "Conditions", field: "Conditions", hozAlign: "left", width: 150 },
-    { title: "Design", field: "Design", hozAlign: "left", width: 150 },
-    { title: "Intervention Type", field: "Intervention_Type", hozAlign: "left", width: 150 },
-    { title: "Study Population", field: "Study_Pop_Stnd", hozAlign: "left", width: 150 },
-    { title: "Race/Ethnicity", field: "Race_Eth", hozAlign: "left", width: 150 },
-    { title: "Sample Size", field: "Sample_Size", hozAlign: "left", width: 150 },
-    { title: "Interventions", field: "Interventions", hozAlign: "left", width: 150 },
-    { title: "Activity_Type", field: "Activity_Type", hozAlign: "left", width: 150 },
-    { title: "Comparator", field: "Comparator", hozAlign: "left", width: 150 },
-    { title: "Outcomes", field: "Outcomes", hozAlign: "left", width: 150 },
-    { title: "Results", field: "Results", hozAlign: "left", width: 150 },
+    { title: "Intervention Name", field: "Intervention Name", hozAlign: "left", width: 150 },
+    { title: "Source", field: "Source", hozAlign: "left", width: 150 },
+    { title: "Evidence of Impelementation (Yes/No)", field: "Evidence of Impelementation (Yes/No)", hozAlign: "left", width: 150 },
+    { title: "Type of Evidence", field: "Type of Evidence", hozAlign: "left", width: 150 },
+    { title: "RCT", field: "RCT (Yes/No)", hozAlign: "left", width: 150 },
+    { title: "Significant CG Outcome", field: "Significant CG Outcome (Yes/No)", hozAlign: "left", width: 150 },
+    { title: "Status", field: "Status", hozAlign: "left", width: 150 },
+    { title: "Notes/Comments", field: "Notes/Comments", hozAlign: "left", width: 150 },
+    { title: "Measurement Tools (Caregiver Outcomes)", field: "Measurement Tools (Caregiver Outcomes)", hozAlign: "left", width: 150 },
+    { title: "Measurement Tools (PLWD Outcomes)", field: "Measurement Tools (PLWD Outcomes)", hozAlign: "left", width: 150 },
+    { title: "Intervention Setting", field: "Intervention Setting", hozAlign: "left", width: 150 },
+    { title: "# of Sessions", field: "# of Sessions", hozAlign: "left", width: 150 },
+    { title: "Duration (in weeks)", field: "Duration (in weeks)", hozAlign: "left", width: 150 },
+    { title: "Session Length (in hours)", field: "Session Length (in hours)", hozAlign: "left", width: 150 },
+    { title: "Provider:Client Ratio", field: "Provider:Client Ratio", hozAlign: "left", width: 150 },
+    { title: "Combined Outcome Categories", field: "Combined Outcome Categories", hozAlign: "left", width: 150 },
   ]
 
 

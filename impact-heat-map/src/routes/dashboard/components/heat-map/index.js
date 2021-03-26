@@ -17,6 +17,15 @@ import './index.css'
 import './index.css'
 
 const PrismHeatMap = (props) => {
+  // console.log("props.fdatda: ", props.data)
+  let all_records = []
+  if (typeof((props.data)[0]) !== 'undefined'){
+    all_records = (props.data)[0]
+  }
+
+  //console.log("ALL reecords", all_records)
+  // console.log(all_records["data"])
+  // console.log("HERE: ", all_records["Other"], all_records.setting)
 
   var subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -37,31 +46,57 @@ const PrismHeatMap = (props) => {
     setIsOpen(false);
   }
 
-  function allModal(node){
+  function allModal(node, e, all_records){
     console.log("NODE: ", node)
+    console.log("E: ", e)
     //console.log("type: ", typeof(node.data.formattedX))
-    let title=""
-    if (typeof(node.data.formattedX)==='object'){
-      let x = String(node.data.x)
-      title = x.slice(4, 15) + " x " + node.data.y
-    } else {
-      title = node.data.x + " x " + node.data.y
-    }
+    let title= node.xKey + " by " + node.yKey
+    // if (typeof(node.data.formattedX)==='object'){
+    //   let x = String(node.data.x)
+    //   title = x.slice(4, 15) + " x " + node.data.y
+    // } else {
+    //   title = node.data.x + " x " + node.data.y
+    // }
+    let clean_all = (all_records[0]).data
+    console.log("CLEAN ALL: ", clean_all)
     let alltables = []
     //console.log("CHECKING: ", node.data.all)
-    let complete = node.data.all
+    // let complete = node.data.all
+    let ys = (node.yKey).split(" + ")
+    console.log("Ys: ", ys)
 
+    let clean_data = []
+    // console.log("all recrods: ", all_records)
+    for (let i of clean_all){
+      //console.log("BIG: ", (i["Combined Outcome Categories"]).includes(node.xKey))
+    //  console.log("BIG2: ", String(i["Intervention Setting"])===String(ys))
+      if ((i["Combined Outcome Categories"]).includes(node.xKey) && (i["Intervention Setting"]).length === ys.length){
+        console.log("IIIII: ", i)
+        if (String(i["Intervention Setting"])===String(ys)){
+          i["key"] = clean_all.indexOf(i)
+          clean_data.push(i)
+        }
+      }
+
+    }
+    console.log("clean_data: ", clean_data)
 
     setAllTableData(alltables)
     let table = []
-    for (let item of Object.keys(complete)){
-      console.log("complete[item]: ", complete)
-      table.push(<div>
-          <h3>{item}</h3>
-          <MainTable tabledata={ complete[item] } height={"auto"} />
+    // for (let item of clean_all){
+    //   // console.log("complete[item]: ", clean_all)
+    //   table.push(<div>
+    //       <h3>{item}</h3>
+    //       <MainTable tabledata={ clean_data } height={"auto"} />
+    //     </div>
+    //   )
+    // }
+    table.push(<div>
+          
+          <MainTable tabledata={ clean_data } height={"auto"} />
         </div>
-      )
-    }
+
+    )
     console.log(table)
     setTables(table)
     setModalTitle(title)
@@ -92,7 +127,7 @@ const PrismHeatMap = (props) => {
         }}
 
 
-        onClick={(node, e) => allModal(node)}
+        onClick={(node, e) => allModal(node, e, props.data)}
         hoverTarget="cell"
         cellHoverOthersOpacity={0.25}
     />
