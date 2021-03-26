@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/impact-heat-map/precache-manifest.cb742cb332dd631ddbf9be89686b90e6.js"
+  "/impact-heat-map/precache-manifest.92b9285b5019dd8ead4c3f4832063faa.js"
 );
 
 self.addEventListener('message', (event) => {
