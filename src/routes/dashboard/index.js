@@ -191,24 +191,11 @@ function DashboardRoute(props) {
         <div>
           <div>
           <Row className="title-block">
-
           </Row>
-
-
-
-
-              
-
-                      <PrismHeatMap
-                        data={heatMapData}
-                        keys={heatMapKeys}
-                      />
-
-
-
-
-
-
+            <PrismHeatMap
+              data={heatMapData}
+              keys={heatMapKeys}
+              />
           </div>
         </div>
 

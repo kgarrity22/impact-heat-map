@@ -17,6 +17,39 @@ import './index.css'
 import './index.css'
 
 const PrismHeatMap = (props) => {
+
+  const HorizontalTick = ({ textAnchor, textBaseline, value, x, y }) => {
+  const MAX_LINE_LENGTH = 16;
+  const MAX_LINES = 2;
+  const LENGTH_OF_ELLIPSIS = 3;
+  const TRIM_LENGTH = MAX_LINE_LENGTH * MAX_LINES - LENGTH_OF_ELLIPSIS;
+  const trimWordsOverLength = new RegExp(`^(.{${TRIM_LENGTH}}[^\\w]*).*`);
+  const groupWordsByLength = new RegExp(
+    `([^\\s].{0,${MAX_LINE_LENGTH}}(?=[\\s\\W]|$))`,
+    'gm',
+  );
+  const splitValues = value
+    .replace(trimWordsOverLength, '$1...')
+    .match(groupWordsByLength)
+    .slice(0, 2)
+    .map((val, i) => (
+      <tspan
+        key={val}
+        dy={12 * i}
+        x={-10}
+        style={{ fontFamily: 'sans-serif', fontSize: '11px' }}
+      >
+        {val}
+      </tspan>
+    ));
+  return (
+    <g transform={`translate(${x},${y})`}>
+      <text alignmentBaseline={textBaseline} textAnchor={textAnchor}>
+        {splitValues}
+      </text>
+    </g>
+  );
+};
   // console.log("props.fdatda: ", props.data)
   let all_records = []
   if (typeof((props.data)[0]) !== 'undefined'){
@@ -92,7 +125,7 @@ const PrismHeatMap = (props) => {
     //   )
     // }
     table.push(<div>
-          
+
           <MainTable tabledata={ clean_data } height={"auto"} />
         </div>
 
@@ -110,7 +143,7 @@ const PrismHeatMap = (props) => {
         data={props.data}
         keys={props.keys}
         indexBy={"setting"}
-        margin={{ top: 200, right: 40, bottom: 60, left: 300 }}
+        margin={{ top: 200, right: 40, bottom: 60, left: 200 }}
         forceSquare={true}
         colors="YlGn"
         axisTop={{ orient: 'top', tickSize: 5, tickPadding: 5, tickRotation: -90, legend: '', legendOffset: 36 }}
@@ -120,11 +153,13 @@ const PrismHeatMap = (props) => {
             orient: 'left',
             tickSize: 5,
             tickPadding: 5,
-            tickRotation: -45,
-
+            renderTick: HorizontalTick,
             legendPosition: 'middle',
-            legendOffset: -40
+            legendOffset: -40,
+            tickSize: 5,
         }}
+        sizeVariation={0}
+        forceSquare={false}
 
 
         onClick={(node, e) => allModal(node, e, props.data)}

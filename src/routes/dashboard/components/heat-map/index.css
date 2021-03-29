@@ -1,8 +1,11 @@
 .heat-map-container {
-  margin-left: 5px;
-  height: 800px;
+  margin-left: 0px;
+  height: 1000px;
 }
-
+/* rect {
+  height: 60px;
+  padding: 10px
+} */
 .Modal {
   position: absolute;
   top: 170px;
