@@ -55,7 +55,20 @@ function DashboardRoute(props) {
   const [loadingHeatMapData, setLoadingHeatMapData] = useState(true)
   const [heatMapData, setHeatMapData] = useState([])
   const [heatMapKeys, setHeatMapKeys] = useState([])
+  const [totalData, setTotalData] = useState([])
   const [initialFilterLoadComplete, setInitialFilterLoadComplete] = useState(true)
+
+
+const sumArray = arr => {
+   const res = {};
+   for(let i = 0; i < arr.length; i++){
+      Object.keys(arr[i]).forEach(key => {
+         res[key] = (res[key] || 0) + arr[i][key];
+      });
+   };
+   return res;
+};
+//console.log(sumArray(arr))
 
   function getHeatMapChartData() {
   //console.log("getPopulationsChartsData")
@@ -153,9 +166,21 @@ function DashboardRoute(props) {
           }
         }
         heat_result["data"] = heat_data
+        let total = sumArray(heat_data)
+        console.log("TOTAL: ", total)
+        total.data = heat_data[0].data
+        total.setting = "Total"
+
+        let all_total = []
+        all_total.push(total)
+        // heat_data.push(total)
+
+        // console.log("DATATATATA: ", heat_data[0].data[0]["Measurement Tools (Caregiver Outcomes)"][0]["Tool Name"])
+        console.log("Heat Data: ", heat_data)
 
 
         heat_result["keys"] = [...keys]
+        heat_result["total"] = all_total
         resolve(heat_result)
 
       })
@@ -168,6 +193,7 @@ function DashboardRoute(props) {
     const result = await getHeatMapChartData()
     setHeatMapData(result.data)
     setHeatMapKeys(result.keys)
+    setTotalData(result.total)
     console.log("RESULT: ", result)
     setLoadingHeatMapData(false)
 
@@ -196,6 +222,10 @@ function DashboardRoute(props) {
               data={heatMapData}
               keys={heatMapKeys}
               />
+              <PrismHeatMap
+                data={totalData}
+                keys={heatMapKeys}
+                />
           </div>
         </div>
 
