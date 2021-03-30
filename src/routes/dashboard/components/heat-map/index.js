@@ -19,10 +19,10 @@ import './index.css'
 const PrismHeatMap = (props) => {
 
   const HorizontalTick = ({ textAnchor, textBaseline, value, x, y }) => {
-  const MAX_LINE_LENGTH = 16;
-  const MAX_LINES = 2;
+  const MAX_LINE_LENGTH = 25;
+  const MAX_LINES = 3;
   const LENGTH_OF_ELLIPSIS = 3;
-  const TRIM_LENGTH = MAX_LINE_LENGTH * MAX_LINES - LENGTH_OF_ELLIPSIS;
+  const TRIM_LENGTH = MAX_LINE_LENGTH * MAX_LINES
   const trimWordsOverLength = new RegExp(`^(.{${TRIM_LENGTH}}[^\\w]*).*`);
   const groupWordsByLength = new RegExp(
     `([^\\s].{0,${MAX_LINE_LENGTH}}(?=[\\s\\W]|$))`,
@@ -31,12 +31,12 @@ const PrismHeatMap = (props) => {
   const splitValues = value
     .replace(trimWordsOverLength, '$1...')
     .match(groupWordsByLength)
-    .slice(0, 2)
+    .slice(0, 3)
     .map((val, i) => (
       <tspan
         key={val}
-        dy={12 * i}
-        x={-10}
+        dy={11 * i}
+        x={-12}
         style={{ fontFamily: 'sans-serif', fontSize: '11px' }}
       >
         {val}

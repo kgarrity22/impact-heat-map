@@ -165,6 +165,12 @@ const sumArray = arr => {
             }
           }
         }
+
+        heat_data.sort(function(first, second) {
+          // console.log("FIRST: ", first.setting)
+          return first.setting.length - second.setting.length;
+        });
+
         heat_result["data"] = heat_data
         let total = sumArray(heat_data)
         console.log("TOTAL: ", total)
