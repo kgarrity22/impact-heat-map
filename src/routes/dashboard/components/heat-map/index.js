@@ -138,13 +138,13 @@ const PrismHeatMap = (props) => {
 
 
   return (
-    <div className="heat-map-container">
+    <div className="heat-map-container" style={{height: props.chartHeight}}>
     <ResponsiveHeatMap
         data={props.data}
         keys={props.keys}
         indexBy={"setting"}
-        margin={{ top: 250, right: 40, bottom: 60, left: 200 }}
-        forceSquare={true}
+        margin={{ top: props.marginTop, right: props.marginRight, bottom: props.marginBottom, left: props.marginLeft }}
+
         colors="YlGn"
         axisTop={{ orient: 'top', tickSize: 5, tickPadding: 5, tickRotation: -90, legend: '', legendOffset: 36 }}
         axisRight={null}

@@ -216,16 +216,25 @@ const sumArray = arr => {
       <Container>
         <div>
           <div>
-          <Row className="title-block">
-          </Row>
+
             <PrismHeatMap
+              marginBottom={0}
+              marginTop={250}
+              marginLeft={200}
+              marginRight={50}
+              chartHeight={800}
               data={heatMapData}
               keys={heatMapKeys}
-              />
-              <PrismHeatMap
+            />
+            <PrismHeatMap
+                marginBottom={0}
+                marginTop={0}
+                marginLeft={200}
+                marginRight={50}
+                chartHeight={80}
                 data={totalData}
                 keys={heatMapKeys}
-                />
+            />
           </div>
         </div>
 
