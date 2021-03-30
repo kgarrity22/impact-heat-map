@@ -98,13 +98,24 @@ const PrismHeatMap = (props) => {
     let ys = (node.yKey).split(" + ")
     console.log("Ys: ", ys)
 
+
     let clean_data = []
     // console.log("all recrods: ", all_records)
+
+
+
     for (let i of clean_all){
       //console.log("BIG: ", (i["Combined Outcome Categories"]).includes(node.xKey))
     //  console.log("BIG2: ", String(i["Intervention Setting"])===String(ys))
-      if ((i["Combined Outcome Categories"]).includes(node.xKey) && (i["Intervention Setting"]).length === ys.length){
-        console.log("IIIII: ", i)
+      if (ys[0]==="Total"){
+        if ((i["Combined Outcome Categories"]).includes(node.xKey)){
+          i["key"] = clean_all.indexOf(i)
+          clean_data.push(i)
+        }
+      }
+
+      else if ((i["Combined Outcome Categories"]).includes(node.xKey) && (i["Intervention Setting"]).length === ys.length){
+        //console.log("IIIII: ", i)
         if (String(i["Intervention Setting"])===String(ys)){
           i["key"] = clean_all.indexOf(i)
           clean_data.push(i)
