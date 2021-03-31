@@ -75,7 +75,29 @@ const sumArray = arr => {
     let heat_result = {}
     let heat_data = []
     let alldata = {}
-    let keys = new Set()
+    alldata["Home"] = {
+      "CG Appraisal: Objective Burden": 0,
+      "CG Appraisal: Satisfaction": 0,
+      "CG Appraisal: Subjective Burden": 0,
+      "CG Coping: Negative Strategies": 0,
+      "CG Coping: Positive Strategies": 0,
+      "CG Health: Physical": 0,
+      "CG Health: Psychological": 0,
+      "CG Internal Resources": 0,
+      "CG Stressor: Disability of PLWD: Behavioral": 0,
+      "CG Stressor: Disability of PLWD: Functional": 0,
+      "PLWD Health: Physical": 0,
+      "PLWD Health: Psychological": 0,
+      "Context: PLWD Resources (perceived social support)": 0,
+      "Context: Caregiver Resources (perceived social support)": 0,
+      "Context: Caregiver Beliefs on Providing Care": 0,
+      "Institutionalization/Formal Care Utilization": 0,
+      "Other": 0,
+      "Quality of Life/Well-being": 0,
+      "Relationship Quality": 0
+    }
+    // let keys = new Set()
+    let keys = Object.keys(alldata.Home)
     let all = []
     return new Promise((resolve, reject) => {
       base('Intervention Table').select({
@@ -117,7 +139,7 @@ const sumArray = arr => {
             let val = {}
             for (let j of outcomes){
               //console.log("j: ", j)
-              keys.add(j)
+              // keys.add(j)
               val[j] = 1
             }
             //console.log("val: ", val)
@@ -127,7 +149,7 @@ const sumArray = arr => {
             //console.log("heere: ", alldata[clean_setting])
             let val = alldata[clean_setting]
             for (let j of outcomes){
-              //console.log("J: ", j, val)
+              console.log("J: ", j, val)
               countOccurrences(val, j)
             }
             //console.log("updated val: ", val)
@@ -170,6 +192,10 @@ const sumArray = arr => {
           // console.log("FIRST: ", first.setting)
           return first.setting.length - second.setting.length;
         });
+
+        // (heat_data[0]).sort()
+        console.log("heat data: ", heat_data[0])
+
 
         heat_result["data"] = heat_data
         let total = sumArray(heat_data)
