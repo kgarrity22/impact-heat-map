@@ -251,7 +251,7 @@ const sumArray = arr => {
 
             <PrismHeatMap
               marginBottom={0}
-              marginTop={250}
+              marginTop={300}
               marginLeft={200}
               marginRight={50}
               chartHeight={800}
