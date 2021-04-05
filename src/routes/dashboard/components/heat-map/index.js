@@ -83,7 +83,13 @@ const PrismHeatMap = (props) => {
     console.log("NODE: ", node)
     console.log("E: ", e)
     //console.log("type: ", typeof(node.data.formattedX))
-    let title= node.xKey + " by " + node.yKey
+    let title = ""
+    if (node.yKey === "Total"){
+      title = "All " + node.xKey + " Records"
+    } else {
+      title= node.xKey + " by " + node.yKey
+    }
+    // let title= node.xKey + " by " + node.yKey
     // if (typeof(node.data.formattedX)==='object'){
     //   let x = String(node.data.x)
     //   title = x.slice(4, 15) + " x " + node.data.y
@@ -156,7 +162,7 @@ const PrismHeatMap = (props) => {
         indexBy={"setting"}
         margin={{ top: props.marginTop, right: props.marginRight, bottom: props.marginBottom, left: props.marginLeft }}
         tooltip={({ xKey, yKey, value, color }) =>
-          (yKey==="Total") ? (<div>{xKey}: <strong>{value}</strong></div>) : (<div>{xKey}: {yKey} - <strong>{value}</strong></div>)
+          (yKey==="Total") ? (<div>Total <strong>{xKey}</strong> Records: <strong>{value}</strong></div>) : (<div>{xKey} by {yKey}: <strong>{value}</strong></div>)
       }
         colors={["#ffffcc", "#d9f0a3", "#addd8e", "#78c679", "#41ab5d", "#238443"]}
         axisTop={{ orient: 'top', tickSize: 5, tickPadding: 5, tickRotation: -60, legend: '', legendOffset: 36 }}

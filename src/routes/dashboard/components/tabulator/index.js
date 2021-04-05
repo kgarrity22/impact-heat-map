@@ -25,7 +25,7 @@ import "react-tabulator/css/bootstrap/tabulator_bootstrap.min.css"; // use Theme
 
 
   let columns = [
-    { title: "Intervention Name", field: "Intervention Name", hozAlign: "left", width: 150 },
+    { title: "Intervention Name", field: "Intervention Name", hozAlign: "left", width: 340 },
     { title: "Source", field: "Source", hozAlign: "left", width: 150 },
     { title: "Evidence of Impelementation (Yes/No)", field: "Evidence of Impelementation (Yes/No)", hozAlign: "left", width: 150 },
     { title: "Type of Evidence", field: "Type of Evidence", hozAlign: "left", width: 150 },
