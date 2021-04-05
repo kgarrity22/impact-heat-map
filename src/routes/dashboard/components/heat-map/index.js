@@ -20,8 +20,8 @@ const PrismHeatMap = (props) => {
 
   const HorizontalTick = ({ textAnchor, textBaseline, value, x, y }) => {
   const MAX_LINE_LENGTH = 25;
-  const MAX_LINES = 3;
-  const LENGTH_OF_ELLIPSIS = 3;
+  const MAX_LINES = 6;
+  const LENGTH_OF_ELLIPSIS = 0;
   const TRIM_LENGTH = MAX_LINE_LENGTH * MAX_LINES
   const trimWordsOverLength = new RegExp(`^(.{${TRIM_LENGTH}}[^\\w]*).*`);
   const groupWordsByLength = new RegExp(
@@ -29,13 +29,13 @@ const PrismHeatMap = (props) => {
     'gm',
   );
   const splitValues = value
-    .replace(trimWordsOverLength, '$1...')
+
     .match(groupWordsByLength)
-    .slice(0, 3)
+    .slice(0, 5)
     .map((val, i) => (
       <tspan
         key={val}
-        dy={11 * i}
+        dy={9 + i}
         x={-12}
         style={{ fontFamily: 'sans-serif', fontSize: '11px' }}
       >
@@ -155,9 +155,11 @@ const PrismHeatMap = (props) => {
         keys={props.keys}
         indexBy={"setting"}
         margin={{ top: props.marginTop, right: props.marginRight, bottom: props.marginBottom, left: props.marginLeft }}
-
-        colors="YlGn"
-        axisTop={{ orient: 'top', tickSize: 5, tickPadding: 5, tickRotation: -90, legend: '', legendOffset: 36 }}
+        tooltip={({ xKey, yKey, value, color }) =>
+          (yKey==="Total") ? (<div>{xKey}: <strong>{value}</strong></div>) : (<div>{xKey}: {yKey} - <strong>{value}</strong></div>)
+      }
+        colors={["#ffffcc", "#d9f0a3", "#addd8e", "#78c679", "#41ab5d", "#238443"]}
+        axisTop={{ orient: 'top', tickSize: 5, tickPadding: 5, tickRotation: -60, legend: '', legendOffset: 36 }}
         axisRight={null}
         axisBottom={null}
         axisLeft={{
@@ -171,8 +173,7 @@ const PrismHeatMap = (props) => {
         }}
         sizeVariation={0}
         forceSquare={false}
-
-
+        labelTextColor={{"from":"color","modifiers":[["darker",100]]}}
         onClick={(node, e) => allModal(node, e, props.data)}
         hoverTarget="cell"
         cellHoverOthersOpacity={0.25}
