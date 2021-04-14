@@ -111,24 +111,31 @@ const PrismHeatMap = (props) => {
 
 
     for (let i of clean_all){
+    
+      if (i['Intervention Name'] !== "Example"){
+        if (ys[0]==="Total"){
+
+          if ((i["Combined Outcome Categories"]).includes(node.xKey)){
+            i["key"] = clean_all.indexOf(i)
+            clean_data.push(i)
+          }
+        }
+
+        else if ((i["Combined Outcome Categories"]).includes(node.xKey) && (i["Intervention Setting"]).length === ys.length){
+          //console.log("IIIII: ", i)
+
+          //console.log(i["Combined Outcome Categories"])
+          if (String(i["Intervention Setting"])===String(ys)){
+            i["key"] = clean_all.indexOf(i)
+            clean_data.push(i)
+          }
+        }
+
+      }
+    }
       //console.log("BIG: ", (i["Combined Outcome Categories"]).includes(node.xKey))
     //  console.log("BIG2: ", String(i["Intervention Setting"])===String(ys))
-      if (ys[0]==="Total"){
-        if ((i["Combined Outcome Categories"]).includes(node.xKey)){
-          i["key"] = clean_all.indexOf(i)
-          clean_data.push(i)
-        }
-      }
 
-      else if ((i["Combined Outcome Categories"]).includes(node.xKey) && (i["Intervention Setting"]).length === ys.length){
-        //console.log("IIIII: ", i)
-        if (String(i["Intervention Setting"])===String(ys)){
-          i["key"] = clean_all.indexOf(i)
-          clean_data.push(i)
-        }
-      }
-
-    }
     console.log("clean_data: ", clean_data)
 
     setAllTableData(alltables)

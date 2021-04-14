@@ -26,13 +26,9 @@ import "react-tabulator/css/bootstrap/tabulator_bootstrap.min.css"; // use Theme
 
   let columns = [
     { title: "Intervention Name", field: "Intervention Name", hozAlign: "left", width: 340 },
-    { title: "Source", field: "Source", hozAlign: "left", width: 150 },
     { title: "Evidence of Impelementation (Yes/No)", field: "Evidence of Impelementation (Yes/No)", hozAlign: "left", width: 150 },
-    { title: "Type of Evidence", field: "Type of Evidence", hozAlign: "left", width: 150 },
     { title: "RCT", field: "RCT (Yes/No)", hozAlign: "left", width: 150 },
     { title: "Significant CG Outcome", field: "Significant CG Outcome (Yes/No)", hozAlign: "left", width: 150 },
-    { title: "Status", field: "Status", hozAlign: "left", width: 150 },
-    { title: "Notes/Comments", field: "Notes/Comments", hozAlign: "left", width: 150 },
     { title: "Tool Names (Caregiver Outcomes)", field: "Tool Names (Caregiver Outcomes)", hozAlign: "left", width: 150 },
     { title: "Tool Names (PLWD Outcomes)", field: "Tool Names (PLWD Outcomes)", hozAlign: "left", width: 150 },
     { title: "Intervention Setting", field: "Intervention Setting", hozAlign: "left", width: 150 },

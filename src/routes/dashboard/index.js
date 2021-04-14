@@ -111,11 +111,17 @@ const sumArray = arr => {
 
 
           let setting = record.get("Intervention Setting")
-          if (typeof(setting)==='undefined'){
-            console.log(setting)
-          }
+          // if (typeof(setting)!=='undefined'){
+          //   console.log('setting:', setting)
+          //
+          // }
           let clean_setting = ""
+          //console.log('setting:', setting)
+          if (typeof(setting)==="undefined"){
+            setting = []
+          }
           if (setting.length > 1){
+            // console.log('setting:', typeof(setting))
             for (let i of setting){
               if (i === setting[0]){
                 clean_setting = i
@@ -128,12 +134,14 @@ const sumArray = arr => {
           }
           //keys.add(clean_setting)
           let outcomes = record.get("Combined Outcome Categories")
+          //console.log('outcomes:', typeof(outcomes))
           if (typeof(outcomes)==='undefined'){
-            console.log(outcomes)
+            //console.log('outcomes:', outcomes)
+            outcomes = []
           }
 
           //console.log(setting, outcomes)
-
+          //console.log("keys:", Object.keys(alldata))
           if (! (Object.keys(alldata)).includes(clean_setting)) {
             // if it's not already in there
             let val = {}
@@ -149,7 +157,7 @@ const sumArray = arr => {
             //console.log("heere: ", alldata[clean_setting])
             let val = alldata[clean_setting]
             for (let j of outcomes){
-              console.log("J: ", j, val)
+              //console.log("J: ", j, val)
               countOccurrences(val, j)
             }
             //console.log("updated val: ", val)
@@ -172,12 +180,16 @@ const sumArray = arr => {
         //********
         // for each item in the dictionary
         for (let key of Object.keys(alldata)){
-          let single = alldata[key]
-          single["setting"] = key
-          console.log('check: ', alldata[key])
-          single["data"] = all
+          //console.log("key: ", key)
+          if (key!=='undefined'){
+            let single = alldata[key]
+            single["setting"] = key
+            //console.log('check: ', alldata[key])
+            single["data"] = all
 
-          heat_data.push(single)
+            heat_data.push(single)
+          }
+
         }
         //console.log("HEAT DATA: ", heat_data)
         for (let item of heat_data){
