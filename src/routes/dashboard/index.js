@@ -8,12 +8,11 @@ import "./index.css";
 import "react-tabulator/lib/styles.css";
 import "react-tabulator/css/bootstrap/tabulator_bootstrap.min.css";
 import "react-tabulator/lib/styles.css";
+import { apiKey, tableKey } from "../../keys";
 
 function DashboardRoute(props) {
   let Airtable = require("airtable");
-  let base = new Airtable({ apiKey: "key8POUQgTG9Ubm4J" }).base(
-    "appw9qP0xvfA2Kjkk"
-  );
+  let base = new Airtable({ apiKey: apiKey }).base(tableKey);
 
   function countOccurrences(dictionary, key) {
     if (key in dictionary) {
