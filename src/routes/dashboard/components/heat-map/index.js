@@ -1,70 +1,55 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useState } from "react";
 
-import Spinner from 'react-spinkit'
-import { ResponsiveHeatMap } from '@nivo/heatmap'
+import { ResponsiveHeatMap } from "@nivo/heatmap";
 
-import { COLOR_SCHEMES } from '../../../../constants'
-import ChartTooltip from '../tooltip'
-import LandscapeTooltip from '../landscape-tooltip'
-import Modal from 'react-modal';
-import MainTable from '../tabulator'
-import ModalTable from '../modal-table'
-import './index.css'
+import Modal from "react-modal";
+import MainTable from "../tabulator";
 
-//import ChartTooltip from '../tooltip'
-//import { COLORS, COLOR_SCHEMES } from '../../../../constants'
-
-import './index.css'
+import "./index.css";
 
 const PrismHeatMap = (props) => {
-
   const HorizontalTick = ({ textAnchor, textBaseline, value, x, y }) => {
-  const MAX_LINE_LENGTH = 25;
-  const MAX_LINES = 6;
-  const LENGTH_OF_ELLIPSIS = 0;
-  const TRIM_LENGTH = MAX_LINE_LENGTH * MAX_LINES
-  const trimWordsOverLength = new RegExp(`^(.{${TRIM_LENGTH}}[^\\w]*).*`);
-  const groupWordsByLength = new RegExp(
-    `([^\\s].{0,${MAX_LINE_LENGTH}}(?=[\\s\\W]|$))`,
-    'gm',
-  );
-  const splitValues = value
+    const MAX_LINE_LENGTH = 25;
+    const MAX_LINES = 6;
+    const LENGTH_OF_ELLIPSIS = 0;
+    const TRIM_LENGTH = MAX_LINE_LENGTH * MAX_LINES;
+    const trimWordsOverLength = new RegExp(`^(.{${TRIM_LENGTH}}[^\\w]*).*`);
+    const groupWordsByLength = new RegExp(
+      `([^\\s].{0,${MAX_LINE_LENGTH}}(?=[\\s\\W]|$))`,
+      "gm"
+    );
+    const splitValues = value
 
-    .match(groupWordsByLength)
-    .slice(0, 5)
-    .map((val, i) => (
-      <tspan
-        key={val}
-        dy={9 + i}
-        x={-12}
-        style={{ fontFamily: 'sans-serif', fontSize: '11px' }}
-      >
-        {val}
-      </tspan>
-    ));
-  return (
-    <g transform={`translate(${x},${y})`}>
-      <text alignmentBaseline={textBaseline} textAnchor={textAnchor}>
-        {splitValues}
-      </text>
-    </g>
-  );
-};
-  // console.log("props.fdatda: ", props.data)
-  let all_records = []
-  if (typeof((props.data)[0]) !== 'undefined'){
-    all_records = (props.data)[0]
+      .match(groupWordsByLength)
+      .slice(0, 5)
+      .map((val, i) => (
+        <tspan
+          key={val}
+          dy={9 + i}
+          x={-12}
+          style={{ fontFamily: "sans-serif", fontSize: "11px" }}
+        >
+          {val}
+        </tspan>
+      ));
+    return (
+      <g transform={`translate(${x},${y})`}>
+        <text alignmentBaseline={textBaseline} textAnchor={textAnchor}>
+          {splitValues}
+        </text>
+      </g>
+    );
+  };
+  let all_records = [];
+  if (typeof props.data[0] !== "undefined") {
+    all_records = props.data[0];
   }
-
-  //console.log("ALL reecords", all_records)
-  // console.log(all_records["data"])
-  // console.log("HERE: ", all_records["Other"], all_records.setting)
 
   var subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [allTableData, setAllTableData] = useState([])
-  const [tables, setTables] = useState([])
-  const [modalTitle, setModalTitle] = useState("")
+  const [allTableData, setAllTableData] = useState([]);
+  const [tables, setTables] = useState([]);
+  const [modalTitle, setModalTitle] = useState("");
 
   function openModal() {
     setIsOpen(true);
@@ -75,19 +60,19 @@ const PrismHeatMap = (props) => {
     // subtitle.style.color = '#f00';
   }
 
-  function closeModal(){
+  function closeModal() {
     setIsOpen(false);
   }
 
-  function allModal(node, e, all_records){
-    console.log("NODE: ", node)
-    console.log("E: ", e)
+  function allModal(node, e, all_records) {
+    console.log("NODE: ", node);
+    console.log("E: ", e);
     //console.log("type: ", typeof(node.data.formattedX))
-    let title = ""
-    if (node.yKey === "Total"){
-      title = "All " + node.xKey + " Records"
+    let title = "";
+    if (node.yKey === "Total") {
+      title = "All " + node.xKey + " Records";
     } else {
-      title= node.xKey + " by " + node.yKey
+      title = node.xKey + " by " + node.yKey;
     }
     // let title= node.xKey + " by " + node.yKey
     // if (typeof(node.data.formattedX)==='object'){
@@ -96,124 +81,132 @@ const PrismHeatMap = (props) => {
     // } else {
     //   title = node.data.x + " x " + node.data.y
     // }
-    let clean_all = (all_records[0]).data
-    console.log("CLEAN ALL: ", clean_all)
-    let alltables = []
+    let clean_all = all_records[0].data;
+    console.log("CLEAN ALL: ", clean_all);
+    let alltables = [];
     //console.log("CHECKING: ", node.data.all)
     // let complete = node.data.all
-    let ys = (node.yKey).split(" + ")
-    console.log("Ys: ", ys)
+    let ys = node.yKey.split(" + ");
+    console.log("Ys: ", ys);
 
-
-    let clean_data = []
+    let clean_data = [];
     // console.log("all recrods: ", all_records)
 
-
-
-    for (let i of clean_all){
-    
-      if (i['Intervention Name'] !== "Example"){
-        if (ys[0]==="Total"){
-
-          if ((i["Combined Outcome Categories"]).includes(node.xKey)){
-            i["key"] = clean_all.indexOf(i)
-            clean_data.push(i)
+    for (let i of clean_all) {
+      if (i["Intervention Name"] !== "Example") {
+        if (ys[0] === "Total") {
+          if (i["Combined Outcome Categories"].includes(node.xKey)) {
+            i["key"] = clean_all.indexOf(i);
+            clean_data.push(i);
           }
-        }
-
-        else if ((i["Combined Outcome Categories"]).includes(node.xKey) && (i["Intervention Setting"]).length === ys.length){
+        } else if (
+          i["Combined Outcome Categories"].includes(node.xKey) &&
+          i["Intervention Setting"].length === ys.length
+        ) {
           //console.log("IIIII: ", i)
 
           //console.log(i["Combined Outcome Categories"])
-          if (String(i["Intervention Setting"])===String(ys)){
-            i["key"] = clean_all.indexOf(i)
-            clean_data.push(i)
+          if (String(i["Intervention Setting"]) === String(ys)) {
+            i["key"] = clean_all.indexOf(i);
+            clean_data.push(i);
           }
         }
-
       }
     }
-      //console.log("BIG: ", (i["Combined Outcome Categories"]).includes(node.xKey))
+    //console.log("BIG: ", (i["Combined Outcome Categories"]).includes(node.xKey))
     //  console.log("BIG2: ", String(i["Intervention Setting"])===String(ys))
 
-    console.log("clean_data: ", clean_data)
+    console.log("clean_data: ", clean_data);
 
-    setAllTableData(alltables)
-    let table = []
-    // for (let item of clean_all){
-    //   // console.log("complete[item]: ", clean_all)
-    //   table.push(<div>
-    //       <h3>{item}</h3>
-    //       <MainTable tabledata={ clean_data } height={"auto"} />
-    //     </div>
-    //   )
-    // }
-    table.push(<div>
+    setAllTableData(alltables);
+    let table = [];
 
-          <MainTable tabledata={ clean_data } height={"auto"} />
-        </div>
-
-    )
-    console.log(table)
-    setTables(table)
-    setModalTitle(title)
-    openModal()
+    table.push(
+      <div>
+        <MainTable tabledata={clean_data} height={"auto"} />
+      </div>
+    );
+    console.log(table);
+    setTables(table);
+    setModalTitle(title);
+    openModal();
   }
 
-
   return (
-    <div className="heat-map-container" style={{height: props.chartHeight}}>
-    <ResponsiveHeatMap
+    <div className="heat-map-container" style={{ height: props.chartHeight }}>
+      <ResponsiveHeatMap
         data={props.data}
         keys={props.keys}
         indexBy={"setting"}
-        margin={{ top: props.marginTop, right: props.marginRight, bottom: props.marginBottom, left: props.marginLeft }}
+        margin={{
+          top: props.marginTop,
+          right: props.marginRight,
+          bottom: props.marginBottom,
+          left: props.marginLeft,
+        }}
         tooltip={({ xKey, yKey, value, color }) =>
-          (yKey==="Total") ? (<div>Total <strong>{xKey}</strong> Records: <strong>{value}</strong></div>) : (<div>{xKey} by {yKey}: <strong>{value}</strong></div>)
-      }
-        colors={["#ffffcc", "#d9f0a3", "#addd8e", "#78c679", "#41ab5d", "#238443"]}
-        axisTop={{ orient: 'top', tickSize: 5, tickPadding: 5, tickRotation: -60, legend: '', legendOffset: 36 }}
+          yKey === "Total" ? (
+            <div>
+              Total <strong>{xKey}</strong> Records: <strong>{value}</strong>
+            </div>
+          ) : (
+            <div>
+              {xKey} by {yKey}: <strong>{value}</strong>
+            </div>
+          )
+        }
+        colors={[
+          "#ffffcc",
+          "#d9f0a3",
+          "#addd8e",
+          "#78c679",
+          "#41ab5d",
+          "#238443",
+        ]}
+        axisTop={{
+          orient: "top",
+          tickSize: 5,
+          tickPadding: 5,
+          tickRotation: -60,
+          legend: "",
+          legendOffset: 36,
+        }}
         axisRight={null}
         axisBottom={null}
         axisLeft={{
-            orient: 'left',
-            tickSize: 5,
-            tickPadding: 5,
-            renderTick: HorizontalTick,
-            legendPosition: 'middle',
-            legendOffset: -40,
-            tickSize: 5,
+          orient: "left",
+          tickSize: 5,
+          tickPadding: 5,
+          renderTick: HorizontalTick,
+          legendPosition: "middle",
+          legendOffset: -40,
+          tickSize: 5,
         }}
         sizeVariation={0}
         forceSquare={false}
-        labelTextColor={{"from":"color","modifiers":[["darker",100]]}}
+        labelTextColor={{ from: "color", modifiers: [["darker", 100]] }}
         onClick={(node, e) => allModal(node, e, props.data)}
         hoverTarget="cell"
         cellHoverOthersOpacity={0.25}
-    />
-    <div className="scatter-modal">
-    <Modal
-      isOpen={modalIsOpen}
-      onAfterOpen={afterOpenModal}
-      onRequestClose={closeModal}
-      contentLabel="Example Modal"
-      ariaHideApp={false}
-      className="Modal"
-    >
-      <h2 ref={_subtitle => (subtitle = _subtitle)}>{modalTitle}</h2>
-      <button className="close-btn" onClick={closeModal}>close</button>
+      />
+      <div className="scatter-modal">
+        <Modal
+          isOpen={modalIsOpen}
+          onAfterOpen={afterOpenModal}
+          onRequestClose={closeModal}
+          contentLabel="Example Modal"
+          ariaHideApp={false}
+          className="Modal"
+        >
+          <h2 ref={(_subtitle) => (subtitle = _subtitle)}>{modalTitle}</h2>
+          <button className="close-btn" onClick={closeModal}>
+            close
+          </button>
 
-      <div className="tableholder">
-        {tables}
+          <div className="tableholder">{tables}</div>
+        </Modal>
       </div>
-
-    </Modal>
     </div>
-    </div>
-
-
-
-  )
-
-}
+  );
+};
 export default PrismHeatMap;
