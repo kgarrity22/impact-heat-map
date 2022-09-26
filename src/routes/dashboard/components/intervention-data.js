@@ -11,6 +11,8 @@ export const data = [
     "Session Length (in hours)": 1.5,
     "Care Partner Outcome Measures":
       'Center for Epidemiologic Studies - Depression (CES-D) Scale,Caregiver Appraisal Inventory (CAI)/Philadelphia Geriatric Center Caregiving Appraisal Scales (PGCCAS),"Bass, Noelker and Rechlin (1996) Physical Health Strain",Pearlin (1990) Self-efficacy Scale,"Role Captivity Scale (Pearlin, 1990)",Bass Tausing and Noelker (1989) Dyadic Relationship Strain Scale,Zung Self-rated Anxiety Scale,Quality of Life in Alzheimer\'s Disease (QOL-AD),Rosenberg Self-esteem Scale,"Bass, Noelker and Rechlin (1996) Emotional Health Strain",Center for Epidemiologic Studies - Depression (CES-D) 10-item',
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "CG Health: Psychological,PLWD Health: Psychological,Appraisal: Satisfaction,Appraisal: Subjective Burden,Appraisal: Subjective Burden,Caregiver Internal Resources,Appraisal: Subjective Burden,Relationship Quality,CG Health: Psychological,Quality of Life/Well-being,Stressor: Disability of PLWD: Functional,Stressor: Disability of PLWD: Behavioral,CG Health: Psychological,PLWD Health: Psychological,CG Health: Psychological,Caregiver Internal Resources,CG Health: Psychological,CG Health: Psychological,PLWD Health: Psychological",
     "Person Living with Dementia Outcome Measures": "",
   },
   {
@@ -25,6 +27,8 @@ export const data = [
     "Session Length (in hours)": 2,
     "Care Partner Outcome Measures":
       "Schedule for Affective Disorders and Schizophrenia (SADS) +Research Diagnostic Criteria (RDC) ,Health and Daily Living Questionnaire - Indices of Coping ,Caregiver Task Checklist (CTCL),Perceived Stress Scale (PSS)",
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "CG Health: Psychological,Coping: Negative Strategies,Coping: Positive Strategies,Appraisal: Subjective Burden,Appraisal: Objective Burden,CG Health: Psychological",
     "Person Living with Dementia Outcome Measures": "",
   },
   {
@@ -41,6 +45,8 @@ export const data = [
     "Session Length (in hours)": 1,
     "Care Partner Outcome Measures":
       'Caregiver Appraisal Inventory (CAI)/Philadelphia Geriatric Center Caregiving Appraisal Scales (PGCCAS),"Revised Scale for Caregiving Self-Efficacy (Steffen et al, 2002)",Center for Epidemiologic Studies - Depression (CES-D) Scale,Glueckauf (2000) Issue Severity Scale,Glueckauf (2000) Issue Frequency Scale,Glueckauf (2000) Issue Change Scale,Center for Epidemiologic Studies - Depression (CES-D) 10-item',
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "Appraisal: Satisfaction,Appraisal: Subjective Burden,Coping: Positive Strategies,Caregiver Internal Resources,Institutionalization/Formal Care Utilization,CG Health: Psychological,PLWD Health: Psychological,Stressor: Disability of PLWD: Behavioral,Stressor: Disability of PLWD: Functional,Stressor: Disability of PLWD: Behavioral,Stressor: Disability of PLWD: Functional,Stressor: Disability of PLWD: Behavioral,Stressor: Disability of PLWD: Functional,CG Health: Psychological,PLWD Health: Psychological",
     "Person Living with Dementia Outcome Measures": "",
   },
   {
@@ -55,6 +61,8 @@ export const data = [
     "Session Length (in hours)": ".5-1",
     "Care Partner Outcome Measures":
       "Patient Health Questionnaire - 9 (PHQ-9),Chronic Disease Score,Neuropsychiatric Inventory - Caregiver Distress (NPI-D)",
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "CG Health: Psychological,PLWD Health: Physical,Appraisal: Subjective Burden",
     "Person Living with Dementia Outcome Measures":
       "Neuropsychiatric Inventory (NPI),Alzheimer's Disease Co-operative Study (ADCS) Activities of Daily Living Inventory,Alzheimer's Disease Cooperative Study Health Care Resource Use,Cornell Scale for Depression in Dementia (CSDD),Telephone Interview for Cognitive Status",
   },
@@ -71,6 +79,8 @@ export const data = [
     "Session Length (in hours)": "variable",
     "Care Partner Outcome Measures":
       'ACCESS Resource Utilization Measure,Lorig et al (1996) Self-effiacay/Confidence Measure,"Bass, Noelker and Rechlin (1996) Caregiver Mastery Scale",Medical Outcomes Study (MOS) Social Support Survey,EuroQol-5D,ACCESS Dementia Knowledge Assessment,ACCESS Unmet Needs Measurement',
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "Institutionalization/Formal Care Utilization,Caregiver Internal Resources,Coping: Positive Strategies,Context: CG Resources (perceived social support),Quality of Life/Well-being,PLWD Health: Physical,Coping: Positive Strategies,Context: CG Resources (perceived social support),Context: PLWD Resources (perceived social support),CG Health: Physical,PLWD Health: Psychological,CG Health: Psychological,Caregiver Internal Resources,Stressor: Disability of PLWD: Behavioral",
     "Person Living with Dementia Outcome Measures":
       "ACCESS 23 Dementia Guidelines,ACCESS Resource Utilization Measure,Consumer Assessment of Health Plans Study (CAHPS) Quality of Care Assessment,Health Utilities Index Mark 3 (HUI-3),Charlson Comorbidity Index",
   },
@@ -86,6 +96,8 @@ export const data = [
     "Session Length (in hours)": 2,
     "Care Partner Outcome Measures":
       'Fortinsky, Kercher and Burant (2002) Self-efficacy Scale",Brief COPE Scale,At the Crossroads Relationship Concern Measure,At the Crossroads Driving Communication Measure,At the Crossroads Awareness and Use of Driving Agreement Measure',
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "Caregiver Internal Resources,Coping: Negative Strategies,Coping: Positive Strategies,Relationship Quality,Other,Other",
     "Person Living with Dementia Outcome Measures": "",
   },
   {
@@ -100,6 +112,8 @@ export const data = [
     "Session Length (in hours)": 1,
     "Care Partner Outcome Measures":
       'Revised Memory and Behavior Problem Checklist (RMBPC),Pittsburgh Sleep Quality Index (PSQI),Center for Epidemiologic Studies - Depression (CES-D) Scale,Screen for Caregiver Burden,"Caregiver Sleep Variables (Friedman et al, 1991)",Center for Epidemiologic Studies - Depression (CES-D) 10-item',
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "Stressor: Disability of PLWD: Behavioral,PLWD Health: Psychological,Appraisal: Subjective Burden,CG Health: Physical,PLWD Health: Physical,CG Health: Psychological,PLWD Health: Psychological,Appraisal: Subjective Burden,Appraisal: Objective Burden,CG Health: Physical,CG Health: Psychological,PLWD Health: Psychological",
     "Person Living with Dementia Outcome Measures":
       "Revised Memory and Behavior Problem Checklist (RMBPC)",
   },
@@ -115,6 +129,8 @@ export const data = [
     "Session Length (in hours)": "variable",
     "Care Partner Outcome Measures":
       'Center for Epidemiologic Studies - Depression (CES-D) Scale,"Bass, McClendon, Deimling, Mukherjee (1994) Relationship Strain Scale","Role Captivity Scale (Pearlin, 1990)","Bass, Noelker and Rechlin (1996) Emotional Health Strain",Center for Epidemiologic Studies - Depression (CES-D) 10-item',
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "CG Health: Psychological,PLWD Health: Psychological,Relationship Quality,Appraisal: Subjective Burden,CG Health: Psychological,CG Health: Psychological,PLWD Health: Psychological",
     "Person Living with Dementia Outcome Measures":
       'BRI Care Consultation Embarrassment and Isolation Due to Memory Problems,BRI Care Consultation Coping with Memory Problems,BRI Care Consultation Community Resource Utilization Measure,BRI Care Consultation Healthcare Resource Utilization Measure,Blessed Orientation-Memory-Concentration Test,Center for Epidemiologic Studies - Depression (CES-D) Scale,"Bass, McClendon, Deimling, Mukherjee (1994) Relationship Strain Scale',
   },
@@ -130,6 +146,8 @@ export const data = [
     "Session Length (in hours)": "variable",
     "Care Partner Outcome Measures":
       "Care Ecosystem Self-efficacy Scale,Patient Health Questionnaire - 9 (PHQ-9),Zarit Burden Interview Short Form (12-item)",
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "Caregiver Internal Resources,CG Health: Psychological,Appraisal: Subjective Burden",
     "Person Living with Dementia Outcome Measures":
       "Quality of Life in Alzheimer's Disease (QOL-AD),Care Ecosystem Healthcare Utilization Measure",
   },
@@ -145,6 +163,8 @@ export const data = [
     "Session Length (in hours)": 1,
     "Care Partner Outcome Measures":
       "Perceived Change Index (PCI),COPE Confidence Using Activities,COPE Target Problem Measure",
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "Appraisal: Satisfaction,CG Health: Psychological,Quality of Life/Well-being,PLWD Health: Psychological,Caregiver Internal Resources,Caregiver Internal Resources,Appraisal: Subjective Burden",
     "Person Living with Dementia Outcome Measures":
       "Functional Independence Measure,Quality of Life in Alzheimer's Disease (QOL-AD),Agitated Behavior in Dementia Scale,Albert (1996) Quality of Life",
   },
@@ -161,6 +181,8 @@ export const data = [
     "Session Length (in hours)": 1,
     "Care Partner Outcome Measures":
       'Dementia Quality of Life Instrument (DQOL),General Health Questionnaire-12 (GHQ-12),Center for Epidemiologic Studies - Depression (CES-D) Scale,Sense of Competence Questionnaire (SCQ),"Smits, Deeg and Bosscher (1995) Mastery Scale',
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "Quality of Life/Well-being,CG Health: Psychological,Caregiver Internal Resources,Context: CG Resources (perceived social support),CG Health: Psychological,PLWD Health: Psychological,CG Health: Psychological,PLWD Health: Psychological,Caregiver Internal Resources,Appraisal: Subjective Burden,Relationship Quality,Appraisal: Satisfaction,Coping: Positive Strategies",
     "Person Living with Dementia Outcome Measures":
       "Dementia Quality of Life Instrument (DQOL),General Health Questionnaire-12 (GHQ-12),Cornell Scale for Depression in Dementia (CSDD),Cumulative Illness Rating Scale for Geriatrics (CIRS-G),Geriatric Depression Scale (GDS),Mini-Mental State Exam (MMSE),Revised Memory and Behavior Problem Checklist (RMBPC),Assessment of Motor and Process Skills (AMPS)",
   },
@@ -176,6 +198,8 @@ export const data = [
     "Session Length (in hours)": 1,
     "Care Partner Outcome Measures":
       "Quality of Life in Alzheimer's Disease (QOL-AD),Berling Inventory of Caregiver Burden with Dementia Patients (BIZA-D)",
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "Quality of Life/Well-being,Stressor: Disability of PLWD: Functional,Stressor: Disability of PLWD: Behavioral,CG Health: Psychological,PLWD Health: Psychological,Appraisal: Objective Burden,Appraisal: Subjective Burden",
     "Person Living with Dementia Outcome Measures":
       "Neuropsychiatric Inventory (NPI),Anti-dementia Drug Treatment,Potentially Inappropriate Medication Use,Mini-Mental State Exam (MMSE),Bayer-Activities of Daily Living Scale (B-ADL),Dementia Care Management Health Resource Utilization",
   },
@@ -191,6 +215,8 @@ export const data = [
     "Session Length (in hours)": "variable",
     "Care Partner Outcome Measures":
       "Family Care Inventory (Preparedness for Caregiving Scale) ,Family Appraisal of Caregiving-Palliative Care,Short Form 12 (SF-12) v.1/SF-12v2TM ©,Connor-Davidson Resilience Scale (CD-RISC)",
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "Caregiver Internal Resources,Appraisal: Subjective Burden,Appraisal: Satisfaction,Context: CG Resources (perceived social support),CG Health: Psychological,CG Health: Physical,Coping: Positive Strategies,Coping: Negative Strategies",
     "Person Living with Dementia Outcome Measures":
       "Symptom Assessment Scale,Barthel Activities of Daily Living Index",
   },
@@ -206,6 +232,8 @@ export const data = [
     "Session Length (in hours)": "variable",
     "Care Partner Outcome Measures":
       "Perceived Stress Scale (PSS),Revised Memory and Behavior Problem Checklist (RMBPC),Center for Epidemiologic Studies - Depression (CES-D) Scale,Perceived Quality of Life  (PQoL)",
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "CG Health: Psychological,Stressor: Disability of PLWD: Behavioral,PLWD Health: Psychological,Appraisal: Subjective Burden,CG Health: Psychological,PLWD Health: Psychological,Quality of Life/Well-being",
     "Person Living with Dementia Outcome Measures": "",
   },
   {
@@ -220,6 +248,8 @@ export const data = [
     "Session Length (in hours)": "1.5-3",
     "Care Partner Outcome Measures":
       'Satisfaction with Life Scale,Center for Epidemiologic Studies - Depression (CES-D) Scale,"Revised Scale for Caregiving Self-Efficacy (Steffen et al, 2002)",Inner Resources for Stress Subjective Improvement Measure,Salivary Cortisol,Center for Epidemiologic Studies - Depression (CES-D) 10-item',
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "CG Health: Psychological,Quality of Life/Well-being,Appraisal: Satisfaction,CG Health: Psychological,PLWD Health: Psychological,Coping: Positive Strategies,Caregiver Internal Resources,Institutionalization/Formal Care Utilization,Coping: Positive Strategies,Other,Coping: Negative Strategies,Appraisal: Objective Burden,CG Health: Psychological,PLWD Health: Psychological",
     "Person Living with Dementia Outcome Measures":
       "Mini-Mental State Exam (MMSE)",
   },
@@ -234,6 +264,8 @@ export const data = [
     "Session Length (in hours)": "1.5-2",
     "Care Partner Outcome Measures":
       "Perceived Stress Scale (PSS),Acceptance and Action Questionnaire II (AAQ II),Profile of Mood States (POMS),Medical Outcomes Study Short Form 36 (MOS SF-36),Family Care Inventory - Mutuality Scale (FCI-MS),Zarit Burden Interview (22-item),Salivary Cortisol",
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "CG Health: Psychological,Coping: Negative Strategies,Coping: Positive Strategies,Context: CG Beliefs on Providing Care (familism),CG Health: Psychological,CG Health: Psychological,CG Health: Physical,Relationship Quality,Appraisal: Subjective Burden,Appraisal: Objective Burden",
     "Person Living with Dementia Outcome Measures": "",
   },
   {
@@ -248,6 +280,8 @@ export const data = [
     "Session Length (in hours)": 2.5,
     "Care Partner Outcome Measures":
       "Perceived Stress Scale (PSS),Center for Epidemiologic Studies - Depression (CES-D) Scale,Spielberger State-Trait Anxiety Inventory ,Short Form 12 (SF-12) v.1/SF-12v2TM ©,Montgomery Borgatta Caregiver Burden Scale,Medical Outcomes Study (MOS) Social Support Survey,Center for Epidemiologic Studies - Depression (CES-D) 10-item",
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "CG Health: Psychological,CG Health: Psychological,PLWD Health: Psychological,CG Health: Psychological,CG Health: Psychological,CG Health: Physical,Appraisal: Subjective Burden,Appraisal: Objective Burden,Context: CG Resources (perceived social support),CG Health: Psychological,PLWD Health: Psychological",
     "Person Living with Dementia Outcome Measures": "",
   },
   {
@@ -262,6 +296,8 @@ export const data = [
     "Session Length (in hours)": 1,
     "Care Partner Outcome Measures":
       "Relatives' Stress Scale (RSS),Poulchock and Deimling (1984) Caregiving Burden Scale - Elder-Caregiver-Family Relationship sub-scale (ECFR)",
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "Appraisal: Subjective Burden,Appraisal: Subjective Burden,Relationship Quality",
     "Person Living with Dementia Outcome Measures":
       "Mini-Mental State Exam (MMSE),Single Leg Stance Test,Berg Balance Scale (BBS),Cumulative Illness Rating Scale (CIRS),Geriatric Depression Scale (GDS),Rosenberg Self-esteem Scale",
   },
@@ -278,6 +314,8 @@ export const data = [
     "Session Length (in hours)": ".5-1",
     "Care Partner Outcome Measures":
       "Caregiver Vigilance Scale,Neuropsychiatric Inventory - Caregiver Distress (NPI-D),Center for Epidemiologic Studies - Depression (CES-D) 10-item,Caregiver Assessment of Function and Upset Scale (CAFU)",
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "Appraisal: Objective Burden,Appraisal: Subjective Burden,CG Health: Psychological,PLWD Health: Psychological,Stressor: Disability of PLWD: Functional,Appraisal: Subjective Burden",
     "Person Living with Dementia Outcome Measures":
       "Neuropsychiatric Inventory - Clinician (NPI-C),Caregiver Assessment of Function and Upset Scale (CAFU),Pain Intensity Scale,Albert (1996) Quality of Life",
   },
@@ -295,6 +333,8 @@ export const data = [
     "Session Length (in hours)": "1-1.5",
     "Care Partner Outcome Measures":
       'NYUCI Caregiver Questionnaire (demographics, help from family/friends, formal service utilization, behavioral symptoms inventory, ADL assistance)",Memory and Behavior Problem Checklist (MBPC),Center for the Study of Aging and Human Development Older Americans Resources Services (OARS) Self-Rated Health Scale,Short Psychiatric Evaluation Schedule,Geriatric Depression Scale (GDS),Stokes Social Network Questionnaire,Zarit Burden Interview (22-item),Family Adaptability and Cohesion Evaluation Scales III (FACES III)',
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "Context: CG Resources (perceived social support),PLWD Health: Physical,CG Health: Psychological,Institutionalization/Formal Care Utilization,Appraisal: Subjective Burden,PLWD Health: Psychological,Stressor: Disability of PLWD: Behavioral,Context: PLWD Resources (perceived social support),Caregiver Internal Resources,PLWD Health: Psychological,CG Health: Psychological,CG Health: Physical,Coping: Positive Strategies,CG Health: Psychological,CG Health: Psychological,PLWD Health: Psychological,Context: CG Resources (perceived social support),Appraisal: Subjective Burden,Context: CG Resources (perceived social support),Context: PLWD Resources (perceived social support),Relationship Quality",
     "Person Living with Dementia Outcome Measures":
       "Memory and Behavior Problem Checklist (MBPC),Global Severity of Dementia,Center for the Study of Aging and Human Development Older Americans Resources Services (OARS) Self-Rated Health Scale",
   },
@@ -310,6 +350,8 @@ export const data = [
     "Session Length (in hours)": 2,
     "Care Partner Outcome Measures":
       "Zarit Burden Interview (22-item),Center for Epidemiologic Studies - Depression (CES-D) 10-item,Caregiving Self-efficacy Scale (CgSES),Neuropsychiatric Inventory (NPI),Revised Memory and Behavior Problem Checklist (RMBPC),Powerful Tools Self-rated Health Measure,Powerful Tools Self-rated Life Satisfaction Measure",
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "Appraisal: Subjective Burden,CG Health: Psychological,PLWD Health: Psychological,Caregiver Internal Resources,PLWD Health: Psychological,Appraisal: Subjective Burden,Stressor: Disability of PLWD: Behavioral,PLWD Health: Psychological,Appraisal: Subjective Burden,CG Health: Physical,Quality of Life/Well-being",
     "Person Living with Dementia Outcome Measures":
       "Revised Memory and Behavior Problem Checklist (RMBPC),Cohen-Mansfield Agitation Inventory (CMAI),Neuropsychiatric Inventory (NPI)",
   },
@@ -325,6 +367,8 @@ export const data = [
     "Session Length (in hours)": "1-2",
     "Care Partner Outcome Measures":
       "Geriatric Depression Scale (GDS),Profile of Mood States (POMS),Memory and Behavior Problem Checklist (MBPC),Caregiver Appraisal Inventory (CAI)/Philadelphia Geriatric Center Caregiving Appraisal Scales (PGCCAS)",
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "CG Health: Psychological,PLWD Health: Psychological,CG Health: Psychological,Appraisal: Subjective Burden,PLWD Health: Psychological,Stressor: Disability of PLWD: Behavioral,Appraisal: Satisfaction,Appraisal: Subjective Burden",
     "Person Living with Dementia Outcome Measures":
       "Memory and Behavior Problem Checklist (MBPC)",
   },
@@ -342,6 +386,8 @@ export const data = [
     "Session Length (in hours)": ".5-1.5",
     "Care Partner Outcome Measures":
       "REACH II Caregiver Self-rated Physical and Emotional Health Questions,REACH II Self-care Questionnaire ,REACH II Social Support Questionnaire,Revised Memory and Behavior Problem Checklist (RMBPC),Caregiver Assessment of Function and Upset Scale (CAFU),Center for Epidemiologic Studies - Depression (CES-D) 10-item,Zarit Burden Interview Short Form (12-item)",
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "CG Health: Physical,CG Health: Psychological,Coping: Positive Strategies,CG Health: Physical,Context: CG Resources (perceived social support),Stressor: Disability of PLWD: Behavioral,PLWD Health: Psychological,Appraisal: Subjective Burden,Stressor: Disability of PLWD: Functional,Appraisal: Subjective Burden,CG Health: Psychological,PLWD Health: Psychological,Appraisal: Subjective Burden",
     "Person Living with Dementia Outcome Measures":
       "REACH II Measure of LTC Placement,Revised Memory and Behavior Problem Checklist (RMBPC)",
   },
@@ -358,6 +404,8 @@ export const data = [
     "Session Length (in hours)": 2,
     "Care Partner Outcome Measures":
       "Revised Memory and Behavior Problem Checklist (RMBPC),Zarit Burden Interview (22-item),Center for Epidemiologic Studies - Depression (CES-D) Scale,Beliefs about Caregiving Scale (BACS)",
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "Stressor: Disability of PLWD: Behavioral,PLWD Health: Psychological,Appraisal: Subjective Burden,Appraisal: Subjective Burden,CG Health: Psychological,PLWD Health: Psychological,Context: CG Beliefs on Providing Care (familism)",
     "Person Living with Dementia Outcome Measures":
       "Revised Memory and Behavior Problem Checklist (RMBPC),Instrumental Activities of Daily Living Scale/Lawton ADL Scale,Mini-Mental State Exam (MMSE)",
   },
@@ -372,6 +420,8 @@ export const data = [
     "Session Length (in hours)": 1.5,
     "Care Partner Outcome Measures":
       "Haley et al (1987;1996) Self-efficacy Measures,Skills2Care Behavior/ADL/IADL Upset Measure",
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "Caregiver Internal Resources,Stressor: Disability of PLWD: Functional",
     "Person Living with Dementia Outcome Measures":
       "Memory and Behavior Problem Checklist (MBPC),Functional Independence Measure,Instrumental Activities of Daily Living Scale/Lawton ADL Scale",
   },
@@ -386,6 +436,8 @@ export const data = [
     "Session Length (in hours)": 1,
     "Care Partner Outcome Measures":
       "Revised Memory and Behavior Problem Checklist (RMBPC),Center for Epidemiologic Studies - Depression (CES-D) Scale,Hamilton Depression Rating Scale (HDRS),Perceived Stress Scale (PSS),Screen for Caregiver Burden,Short Sense of Competence Questionnaire (SSCQ),Neuropsychiatric Inventory - Caregiver Distress (NPI-D)",
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "Stressor: Disability of PLWD: Behavioral,PLWD Health: Psychological,Appraisal: Subjective Burden,CG Health: Psychological,PLWD Health: Psychological,PLWD Health: Psychological,CG Health: Psychological,Appraisal: Subjective Burden,Appraisal: Objective Burden,Caregiver Internal Resources,Appraisal: Subjective Burden,Relationship Quality,Appraisal: Satisfaction,Appraisal: Subjective Burden",
     "Person Living with Dementia Outcome Measures":
       "Neuropsychiatric Inventory (NPI),Revised Memory and Behavior Problem Checklist (RMBPC),Quality of Life in Alzheimer's Disease (QOL-AD)",
   },
@@ -402,6 +454,8 @@ export const data = [
     "Session Length (in hours)": 2.5,
     "Care Partner Outcome Measures":
       "SHARE Service Availability Measure,Bass Tausing and Noelker (1989) Dyadic Relationship Strain Scale,SHARE Care-related Agreement Scale,Emotional-Intimacy Disruptive Behavior Scale,Dementia Quality of Life Instrument (DQOL)",
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "Institutionalization/Formal Care Utilization,Relationship Quality,Context: CG Resources (perceived social support),Institutionalization/Formal Care Utilization,Relationship Quality,Quality of Life/Well-being,CG Health: Psychological,Caregiver Internal Resources,Context: CG Resources (perceived social support)",
     "Person Living with Dementia Outcome Measures":
       "Preferences for Care Tasks Scale (PCTS),SHARE Service Availability Measure,Bass Tausing and Noelker (1989) Dyadic Relationship Strain Scale,Emotional-Intimacy Disruptive Behavior Scale,SHARE Care-related Agreement Scale,Dementia Quality of Life Instrument (DQOL)",
   },
@@ -416,6 +470,8 @@ export const data = [
     "Session Length (in hours)": 1,
     "Care Partner Outcome Measures":
       "Identity Discrepancy,Montgomery Borgatta Caregiver Burden Scale,Center for Epidemiologic Studies - Depression (CES-D) Scale",
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "CG Health: Psychological,Appraisal: Subjective Burden,Appraisal: Objective Burden,CG Health: Psychological,PLWD Health: Psychological",
     "Person Living with Dementia Outcome Measures":
       "TCARE Intention to Place in Long-term Care",
   },
@@ -431,6 +487,8 @@ export const data = [
     "Session Length (in hours)": "variable",
     "Care Partner Outcome Measures":
       "Revised Memory and Behavior Problem Checklist (RMBPC),Center for Epidemiologic Studies - Depression (CES-D) Scale",
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "Stressor: Disability of PLWD: Behavioral,PLWD Health: Psychological,Appraisal: Subjective Burden,CG Health: Psychological,PLWD Health: Psychological",
     "Person Living with Dementia Outcome Measures":
       "Revised Memory and Behavior Problem Checklist (RMBPC)",
   },
@@ -447,6 +505,8 @@ export const data = [
     "Session Length (in hours)": "variable",
     "Care Partner Outcome Measures":
       'Perceived Stress Scale (PSS),Spielberger State-Trait Anxiety Inventory ,Center for Epidemiologic Studies - Depression (CES-D) Scale,Minnesota Multiphasic Personality Inventory-based Cook-Medley Hostility Scale,"Revised Scale for Caregiving Self-Efficacy (Steffen et al, 2002)",Pittsburgh Sleep Quality Index (PSQI),Stress Biomarkers',
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "CG Health: Psychological,CG Health: Psychological,CG Health: Psychological,PLWD Health: Psychological,Relationship Quality,Coping: Positive Strategies,Caregiver Internal Resources,Institutionalization/Formal Care Utilization,CG Health: Physical,PLWD Health: Physical,Appraisal: Objective Burden,CG Health: Physical",
     "Person Living with Dementia Outcome Measures": "",
   },
   {
@@ -461,6 +521,8 @@ export const data = [
     "Session Length (in hours)": ".25",
     "Care Partner Outcome Measures":
       "Medical Outcomes Study Short Form 36 (MOS SF-36),Hamilton Depression Rating Scale (HDRS),Mini-Mental State Exam (MMSE),California Verbal Learning Test II,Trail Making Tests A and B,Telomerase Activity,Cumulative Illness Rating Scale (CIRS)",
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "CG Health: Psychological,CG Health: Physical,PLWD Health: Psychological,PLWD Health: Psychological,CG Health: Psychological,PLWD Health: Psychological,CG Health: Psychological,Appraisal: Objective Burden,PLWD Health: Physical",
     "Person Living with Dementia Outcome Measures": "",
   },
 ];
