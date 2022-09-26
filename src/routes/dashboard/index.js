@@ -5,45 +5,94 @@ import { Container } from "react-bootstrap";
 import { Vega } from "react-vega";
 
 import { data } from "./components/intervention-data";
-import "./index.css";
-import "react-tabulator/lib/styles.css";
-import "react-tabulator/css/bootstrap/tabulator_bootstrap.min.css";
-import "react-tabulator/lib/styles.css";
 
-function DashboardRoute(props) {
+function DashboardRoute() {
+  const splitStringsData = data
+    .map((datum) => {
+      const xVals =
+        datum["Measure Domains (from Care Partner Outcome Measures)"].split(
+          ","
+        );
+      const splitData = xVals.map((val) => ({
+        ...datum,
+        "Measure Domains (from Care Partner Outcome Measures)": val,
+      }));
+      return splitData;
+    })
+    .flat();
+
+  const counted = splitStringsData.reduce((acc, item) => {
+    const key =
+      item["Measure Domains (from Care Partner Outcome Measures)"] +
+      item["Intervention Setting"];
+    if (!acc.hasOwnProperty(key)) {
+      acc[key] = 0;
+    }
+    acc[key] += 1;
+    return acc;
+  }, {});
+  const finalData = splitStringsData.map((d) => ({
+    ...d,
+    Count:
+      counted[
+        d["Measure Domains (from Care Partner Outcome Measures)"] +
+          d["Intervention Setting"]
+      ],
+  }));
+
+  console.log("Counted: ", counted);
   const heatMapSpec = {
     $schema: "https://vega.github.io/schema/vega-lite/v5.json",
     data: {
-      values: data,
+      values: finalData,
     },
     transform: [
       {
-        aggregate: [{ op: "count", as: "num_cars" }],
-        groupby: ["Intervention Name", "Intervention Setting"],
+        impute: "Count",
+        groupby: ["Intervention Setting"],
+        key: "Measure Domains (from Care Partner Outcome Measures)",
+        value: 0,
       },
     ],
     encoding: {
-      y: { field: "Intervention Name", type: "ordinal" },
-      x: { field: "Intervention Setting", type: "ordinal" },
+      y: {
+        field: "Intervention Setting",
+        type: "nominal",
+        titleOffset: 500,
+        labelOffset: 300,
+
+        axis: { labelLimit: 1000 },
+      },
+      x: {
+        field: "Measure Domains (from Care Partner Outcome Measures)",
+        type: "nominal",
+        axis: { orient: "top", labelAngle: -45, labelLimit: 1000 },
+      },
+      tooltip: [
+        { field: "Count" },
+        { field: "Measure Domains (from Care Partner Outcome Measures)" },
+        { field: "Intervention Setting" },
+      ],
     },
     layer: [
       {
         mark: "rect",
         encoding: {
           color: {
-            field: "num_cars",
+            condition: { test: "datum.Count <= 0", value: "lightgray" },
+            scale: { domainMin: 1 },
+            field: "Count",
             type: "quantitative",
             title: "Count of Records",
-            legend: { direction: "horizontal", gradientLength: 120 },
           },
         },
       },
       {
         mark: "text",
         encoding: {
-          text: { field: "num_cars", type: "quantitative" },
+          text: { field: "Count", type: "quantitative" },
           color: {
-            condition: { test: "datum['num_cars'] < 40", value: "black" },
+            condition: { test: "datum['Count'] < 7", value: "black" },
             value: "white",
           },
         },
