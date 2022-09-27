@@ -75,7 +75,7 @@ function DashboardRoute() {
       },
     ],
     height: 400,
-    width: 600,
+    width: "container",
     encoding: {
       y: {
         field: "Intervention Setting",
@@ -161,6 +161,7 @@ function DashboardRoute() {
           actions={true}
           signalListeners={{ datumClick: handleClick }}
           spec={compiledSpec}
+          style={{ width: "100%" }}
         />
         <Dialog
           onClose={handleClose}
