@@ -65,7 +65,7 @@ function DashboardRoute() {
     data: {
       values: finalData,
     },
-    padding: { top: 100, bottom: 100 },
+    padding: { top: 100, bottom: 100, left: 0, right: 100 },
     transform: [
       {
         impute: "Count",
@@ -81,7 +81,7 @@ function DashboardRoute() {
         field: "Intervention Setting",
         type: "nominal",
 
-        axis: { labelLimit: 1000, titlePadding: 140 },
+        axis: { labelLimit: 1000, titlePadding: 20 },
       },
       x: {
         field: "Measure Domains (from Care Partner Outcome Measures)",
