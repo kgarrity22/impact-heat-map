@@ -1,25 +1,20 @@
 {
   "files": {
-    "main.css": "/impact-heat-map/static/css/main.756fca68.chunk.css",
+    "main.css": "/impact-heat-map/static/css/main.296601d6.chunk.css",
     "main.js": "/impact-heat-map/static/js/main.3aef113d.chunk.js",
-    "main.js.map": "/impact-heat-map/static/js/main.3aef113d.chunk.js.map",
     "runtime-main.js": "/impact-heat-map/static/js/runtime-main.98583220.js",
-    "runtime-main.js.map": "/impact-heat-map/static/js/runtime-main.98583220.js.map",
-    "static/css/2.08bf8351.chunk.css": "/impact-heat-map/static/css/2.08bf8351.chunk.css",
+    "static/css/2.8ae9bad9.chunk.css": "/impact-heat-map/static/css/2.8ae9bad9.chunk.css",
     "static/js/2.659f4f52.chunk.js": "/impact-heat-map/static/js/2.659f4f52.chunk.js",
-    "static/js/2.659f4f52.chunk.js.map": "/impact-heat-map/static/js/2.659f4f52.chunk.js.map",
     "index.html": "/impact-heat-map/index.html",
-    "precache-manifest.4443e1552802bf51ad5de840e0ad0149.js": "/impact-heat-map/precache-manifest.4443e1552802bf51ad5de840e0ad0149.js",
+    "precache-manifest.a3eab7c2246edc309897c4ac2cb2b7c8.js": "/impact-heat-map/precache-manifest.a3eab7c2246edc309897c4ac2cb2b7c8.js",
     "service-worker.js": "/impact-heat-map/service-worker.js",
-    "static/css/2.08bf8351.chunk.css.map": "/impact-heat-map/static/css/2.08bf8351.chunk.css.map",
-    "static/css/main.756fca68.chunk.css.map": "/impact-heat-map/static/css/main.756fca68.chunk.css.map",
     "static/js/2.659f4f52.chunk.js.LICENSE.txt": "/impact-heat-map/static/js/2.659f4f52.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.98583220.js",
-    "static/css/2.08bf8351.chunk.css",
+    "static/css/2.8ae9bad9.chunk.css",
     "static/js/2.659f4f52.chunk.js",
-    "static/css/main.756fca68.chunk.css",
+    "static/css/main.296601d6.chunk.css",
     "static/js/main.3aef113d.chunk.js"
   ]
 }
