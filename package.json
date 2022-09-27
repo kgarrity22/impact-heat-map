@@ -4,10 +4,13 @@
   "private": true,
   "homepage": "https://kgarrity22.github.io/impact-heat-map/",
   "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
     "@genyus/country-code": "^1.0.2",
     "@glideapps/glide-data-grid": "^2.0.0",
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
+    "@mui/material": "^5.10.7",
     "@nivo/bar": "^0.66.0",
     "@nivo/bump": "^0.67.0",
     "@nivo/core": "^0.66.0",
@@ -56,6 +59,7 @@
     "recharts": "^1.8.5",
     "styled-components": "^5.2.1",
     "styled-system": "^5.1.5",
+    "typescript": "^4.8.3",
     "vega": "^5.22.1",
     "vega-lite": "^5.5.0"
   },

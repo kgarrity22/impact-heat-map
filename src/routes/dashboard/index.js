@@ -1,10 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { Container } from "react-bootstrap";
-
 import { Vega } from "react-vega";
+import Dialog from "@mui/material/Dialog";
+import { vegaLite } from "vega-embed";
 
 import { data } from "./components/intervention-data";
+import MainTable from "./components/table";
+
+export const addClickSignal = (spec) => {
+  const vgSpec = vegaLite.compile(spec).spec;
+
+  if (!vgSpec.signals) {
+    vgSpec.signals = [];
+  }
+
+  vgSpec.signals.push({
+    name: "datumClick",
+    on: [
+      { events: "*:mouseup", encode: "release" },
+      { events: "click", update: "datum" },
+    ],
+  });
+
+  return vgSpec;
+};
 
 function DashboardRoute() {
   const splitStringsData = data
@@ -40,12 +60,12 @@ function DashboardRoute() {
       ],
   }));
 
-  console.log("Counted: ", counted);
   const heatMapSpec = {
     $schema: "https://vega.github.io/schema/vega-lite/v5.json",
     data: {
       values: finalData,
     },
+    padding: { top: 100, bottom: 100 },
     transform: [
       {
         impute: "Count",
@@ -54,23 +74,27 @@ function DashboardRoute() {
         value: 0,
       },
     ],
+    height: 400,
+    width: 600,
     encoding: {
       y: {
         field: "Intervention Setting",
         type: "nominal",
-        titleOffset: 500,
-        labelOffset: 300,
 
-        axis: { labelLimit: 1000 },
+        axis: { labelLimit: 1000, titlePadding: 140 },
       },
       x: {
         field: "Measure Domains (from Care Partner Outcome Measures)",
+        title: "Measure Domains",
         type: "nominal",
         axis: { orient: "top", labelAngle: -45, labelLimit: 1000 },
       },
       tooltip: [
         { field: "Count" },
-        { field: "Measure Domains (from Care Partner Outcome Measures)" },
+        {
+          field: "Measure Domains (from Care Partner Outcome Measures)",
+          title: "Measure Domains",
+        },
         { field: "Intervention Setting" },
       ],
     },
@@ -103,10 +127,60 @@ function DashboardRoute() {
     },
   };
 
+  const [open, setOpen] = useState(false);
+  const handleClose = () => setOpen(false);
+
+  const [tableData, setTableData] = useState([]);
+  const [title, setTitle] = useState("");
+
+  const handleClick = (_unused, item) => {
+    if (item.datum) {
+      const x =
+        item.datum["Measure Domains (from Care Partner Outcome Measures)"];
+      const y = item.datum["Intervention Setting"];
+
+      const td = data.filter(
+        (d) =>
+          d["Measure Domains (from Care Partner Outcome Measures)"].includes(
+            x
+          ) && d["Intervention Setting"].includes(y)
+      );
+
+      setTableData(td);
+      setTitle(`Viewing ${td.length} records`);
+      setOpen(true);
+    }
+  };
+
+  const compiledSpec = addClickSignal(heatMapSpec);
+
   return (
     <div>
       <Container>
-        <Vega actions={true} spec={heatMapSpec} />
+        <Vega
+          actions={true}
+          signalListeners={{ datumClick: handleClick }}
+          spec={compiledSpec}
+        />
+        <Dialog
+          onClose={handleClose}
+          open={open}
+          sx={{
+            margin: 20,
+            minHeight: 400,
+            minWidth: 1000,
+          }}
+        >
+          <div
+            style={{
+              margin: 20,
+              minWidth: 1000,
+            }}
+          >
+            <h1>{title}</h1>
+            <MainTable tabledata={tableData} height="auto" />
+          </div>
+        </Dialog>
       </Container>
     </div>
   );
