@@ -156,33 +156,31 @@ function DashboardRoute() {
 
   return (
     <div>
-      <Container>
-        <Vega
-          actions={true}
-          signalListeners={{ datumClick: handleClick }}
-          spec={compiledSpec}
-          style={{ width: "100%" }}
-        />
-        <Dialog
-          onClose={handleClose}
-          open={open}
-          sx={{
+      <Vega
+        actions={true}
+        signalListeners={{ datumClick: handleClick }}
+        spec={compiledSpec}
+        style={{ width: "100%" }}
+      />
+      <Dialog
+        onClose={handleClose}
+        open={open}
+        // sx={{
+        //   margin: 20,
+        //   minHeight: 400,
+        //   minWidth: 1000,
+        // }}
+      >
+        <div
+          style={{
             margin: 20,
-            minHeight: 400,
             minWidth: 1000,
           }}
         >
-          <div
-            style={{
-              margin: 20,
-              minWidth: 1000,
-            }}
-          >
-            <h5>{title}</h5>
-            <MainTable tabledata={tableData} height="auto" />
-          </div>
-        </Dialog>
-      </Container>
+          <h5>{title}</h5>
+          <MainTable tabledata={tableData} height="auto" />
+        </div>
+      </Dialog>
     </div>
   );
 }

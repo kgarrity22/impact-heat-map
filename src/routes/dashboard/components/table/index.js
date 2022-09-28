@@ -94,6 +94,7 @@ class MainTable extends React.Component {
         <button
           className="btn btn-primary download-btn"
           onClick={this.downloadData}
+          style={{ marginBottom: "10px" }}
         >
           Download
         </button>
