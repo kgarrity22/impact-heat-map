@@ -72,10 +72,10 @@ function DashboardRoute() {
         key: "Measure Domains (from Care Partner Outcome Measures)",
         value: 0,
       },
-      // {
-      //   calculate: "split(datum['Intervention Setting'], ',')",
-      //   as: "Intervention Setting",
-      // },
+      {
+        calculate: "join(split(datum['Intervention Setting'], '&'), ' ')",
+        as: "Intervention Setting Tooltip",
+      },
     ],
     height: 400,
     width: "container",
@@ -103,7 +103,10 @@ function DashboardRoute() {
           field: "Measure Domains (from Care Partner Outcome Measures)",
           title: "Measure Domains",
         },
-        { field: "Intervention Setting" },
+        {
+          field: "Intervention Setting Tooltip",
+          title: "Intervention Setting",
+        },
       ],
     },
     layer: [
