@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
-import { Container } from "react-bootstrap";
 import { Vega } from "react-vega";
 import Dialog from "@mui/material/Dialog";
 import { vegaLite } from "vega-embed";
@@ -73,6 +72,10 @@ function DashboardRoute() {
         key: "Measure Domains (from Care Partner Outcome Measures)",
         value: 0,
       },
+      // {
+      //   calculate: "split(datum['Intervention Setting'], ',')",
+      //   as: "Intervention Setting",
+      // },
     ],
     height: 400,
     width: "container",
@@ -80,8 +83,13 @@ function DashboardRoute() {
       y: {
         field: "Intervention Setting",
         type: "nominal",
-
-        axis: { labelLimit: 200, titlePadding: 20 },
+        sort: "-x",
+        axis: {
+          titlePadding: 20,
+          labelOffset: -16,
+          // for wrapping strings
+          labelExpr: "split(datum.label, '&')",
+        },
       },
       x: {
         field: "Measure Domains (from Care Partner Outcome Measures)",
@@ -123,7 +131,10 @@ function DashboardRoute() {
       },
     ],
     config: {
-      axis: { grid: true, tickBand: "extent" },
+      axis: {
+        grid: true,
+        tickBand: "extent",
+      },
     },
   };
 
