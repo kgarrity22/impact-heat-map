@@ -162,19 +162,10 @@ function DashboardRoute() {
         spec={compiledSpec}
         style={{ width: "100%" }}
       />
-      <Dialog
-        onClose={handleClose}
-        open={open}
-        // sx={{
-        //   margin: 20,
-        //   minHeight: 400,
-        //   minWidth: 1000,
-        // }}
-      >
+      <Dialog onClose={handleClose} open={open} maxWidth={1000} minHeight={600}>
         <div
           style={{
             margin: 20,
-            minWidth: 1000,
           }}
         >
           <h5>{title}</h5>

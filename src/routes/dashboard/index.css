@@ -13,7 +13,7 @@
 
 .dashboard-route .scrollable-container {
   overflow-y: auto;
-  margin-top: 10px
+  margin-top: 10px;
 }
 
 .dashboard-route .scrollable-container .row {
@@ -47,7 +47,7 @@
   margin-left: 20px;
   display: flex;
   padding-bottom: 20px;
-  border-bottom: 1px solid #EBEFF2;
+  border-bottom: 1px solid #ebeff2;
 }
 .dashboard-route .single-stats-containers .single-stats-container {
   flex-grow: 1;
@@ -69,8 +69,8 @@
 
 .slide-pane,
 .slide-pane__overlay.ReactModal__Overlay--after-open {
-    background-color: transparent;
-    box-shadow: unset;
+  background-color: transparent;
+  box-shadow: unset;
 }
 
 .sliding-pane-container {
@@ -82,39 +82,39 @@
 }
 
 .sliding-pane-container.red {
-  border-right: 5px solid #E2445C;
+  border-right: 5px solid #e2445c;
 }
 
 .sliding-pane-container.orange {
-  border-right: 5px solid #FDAB3D;
+  border-right: 5px solid #fdab3d;
 }
 
 .sliding-pane-container.yellow {
-  border-right: 5px solid #F8C500;
+  border-right: 5px solid #f8c500;
 }
 
 .sliding-pane-container.green {
-  border-right: 5px solid #2ED47A;
+  border-right: 5px solid #2ed47a;
 }
 
 .sliding-pane-container.blue {
-  border-right: 5px solid #579BFC;
+  border-right: 5px solid #579bfc;
 }
 
 .sliding-pane-container.indigo {
-  border-right: 5px solid #7E3B8A;
+  border-right: 5px solid #7e3b8a;
 }
 
 .sliding-pane-container.violet {
-  border-right: 5px solid #A25DDC;
+  border-right: 5px solid #a25ddc;
 }
 
 .sliding-pane-container .left-pane {
-    margin-left: 250px;
-    margin-top: 40px;
-    height: 100%;
-    width: 250px;
-    overflow-y: auto;
+  margin-left: 250px;
+  margin-top: 40px;
+  height: 100%;
+  width: 250px;
+  overflow-y: auto;
 }
 
 .sliding-pane-container .right-pane {
@@ -122,11 +122,10 @@
   width: 250px;
   padding-top: 60px;
   overflow-y: auto;
-  border-left: 1px solid #E1E1E1;
+  border-left: 1px solid #e1e1e1;
 }
 
 .table-container {
-
   margin-left: 20px;
   margin-right: 20px;
 }
@@ -137,14 +136,22 @@
   border-color: #343a40;
 }
 
-.tabulator-cell{
-  font-family:monospace;
+.tabulator-cell {
+  font-family: monospace;
 }
 
-.first-block{
+.first-block {
   margin-top: 50px;
 }
 
-.title-block{
+.title-block {
   background: #ffffff;
+}
+/* .MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation24 MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm  */
+
+.MuiDialog-paper {
+  min-width: 1000px;
+  min-height: 1000px;
+  max-width: 1000px;
+  max-height: 1000px;
 }

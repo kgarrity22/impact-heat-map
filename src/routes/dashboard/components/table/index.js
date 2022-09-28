@@ -6,7 +6,7 @@ import "react-tabulator/css/bootstrap/tabulator_bootstrap.min.css"; // use Theme
 
 let options = {
   // height: 600,
-  placeholder: "Loading Data...",
+  placeholder: "No Data",
   downloadDataFormatter: (data) => data,
   downloadReady: (fileContents, blob) => blob,
   resizable: false,
