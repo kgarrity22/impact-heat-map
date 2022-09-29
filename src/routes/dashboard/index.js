@@ -87,9 +87,11 @@ function DashboardRoute() {
       axis: {
         grid: true,
         tickBand: "extent",
+        labelFontSize: 16,
+        titleFontSize: 16,
       },
     },
-    padding: { top: 100, bottom: 100, left: 0 },
+    padding: { top: 100, bottom: 100, left: 0, right: 10 },
     transform: [
       {
         impute: "Count",
@@ -149,6 +151,7 @@ function DashboardRoute() {
           orient: "top",
           labelAngle: -45,
           labelLimit: 1000,
+          titlePadding: 80,
           gridWidth: {
             condition: {
               test: {
@@ -197,7 +200,7 @@ function DashboardRoute() {
         },
       },
       {
-        mark: { type: "text", fontStyle: "bold" },
+        mark: { type: "text", fontStyle: "bold", fontSize: 16 },
         encoding: {
           text: { field: "Count", type: "quantitative" },
           color: {
