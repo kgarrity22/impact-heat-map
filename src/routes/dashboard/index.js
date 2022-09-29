@@ -199,7 +199,7 @@ function DashboardRoute() {
         },
       },
       {
-        mark: "text",
+        mark: { type: "text", fontStyle: "bold" },
         encoding: {
           text: { field: "Count", type: "quantitative" },
           color: {
