@@ -58,11 +58,38 @@ function DashboardRoute() {
           d["Intervention Setting"]
       ],
   }));
+  const yVals = data;
+  // const emptyColData =
+  // Coping: Positive Strategies (PLWD)
 
   const heatMapSpec = {
     $schema: "https://vega.github.io/schema/vega-lite/v5.json",
     data: {
       values: finalData,
+    },
+    config: {
+      axis: {
+        grid: true,
+        // gridWidth: { field: "Count" },
+        gridWidth: {
+          condition: {
+            test: {
+              field: "Measure Domains (from Care Partner Outcome Measures)",
+              equal: "Other",
+            },
+            // [
+            //   {
+            //     field: "Measure Domains (from Care Partner Outcome Measures)",
+            //     equal: "Stressor: Disability of PLWD: Functional",
+            //   },
+
+            // ],
+            value: 3,
+          },
+          value: 1,
+        },
+        tickBand: "extent",
+      },
     },
     padding: { top: 100, bottom: 100, left: 0 },
     transform: [
@@ -94,8 +121,57 @@ function DashboardRoute() {
       x: {
         field: "Measure Domains (from Care Partner Outcome Measures)",
         title: "Measure Domains",
-        type: "nominal",
-        axis: { orient: "top", labelAngle: -45, labelLimit: 1000 },
+        type: "ordinal",
+        scale: {
+          domain: [
+            "Appraisal: Objective Burden",
+            "Appraisal: Subjective Burden",
+            "Appraisal: Satisfaction",
+            "Care Partner Internal Resources",
+            "Care Partner Health: Physical",
+            "Care Partner Health: Psychological",
+            "Context: Care Partner Beliefs on Providing Care (familism)",
+            "Context: Care Partner Resources (perceived social support)",
+            "Coping: Positive Strategies",
+            "Coping: Negative Strategies",
+            "Stressor: Disability of PLWD: Behavioral",
+            "Stressor: Disability of PLWD: Functional",
+            "Relationship Quality",
+            "Quality of Life/Well-being",
+            "Other",
+            "PLWD Health: Physical",
+            "PLWD Health: Psychological",
+            "Context: PLWD Resources (perceived social support)",
+            "Coping: Positive Strategies (PLWD)",
+            "Coping: Negative Strategies (PLWD)",
+            "Institutionalization/Formal Care Utilization",
+          ],
+        },
+        axis: {
+          orient: "top",
+          labelAngle: -45,
+          labelLimit: 1000,
+          gridWidth: {
+            condition: {
+              test: {
+                field: "value",
+                oneOf: ["Other", "Stressor: Disability of PLWD: Functional"],
+              },
+              value: 3,
+            },
+            value: 1,
+          },
+          gridColor: {
+            condition: {
+              test: {
+                field: "value",
+                oneOf: ["Other", "Stressor: Disability of PLWD: Functional"],
+              },
+              value: "gray",
+            },
+            value: "lightgray",
+          },
+        },
       },
       tooltip: [
         { field: "Count" },
@@ -132,13 +208,23 @@ function DashboardRoute() {
           },
         },
       },
+
+      //
+      // {
+      //   mark: {
+      //     type: "line",
+      //     strokeWidth: 6,
+      //     stroke: "black",
+      //   },
+      //   encoding: {
+      //     x: {
+      //       datum: "Stressor: Disability of PLWD: Functional",
+      //       type: "ordinal",
+      //       // axis: { tickBand: "center" },
+      //     },
+      //   },
+      // },
     ],
-    config: {
-      axis: {
-        grid: true,
-        tickBand: "extent",
-      },
-    },
   };
 
   const [open, setOpen] = useState(false);
