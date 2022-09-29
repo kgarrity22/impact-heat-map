@@ -50,17 +50,33 @@ function DashboardRoute() {
     acc[key] += 1;
     return acc;
   }, {});
-  const finalData = splitStringsData.map((d) => ({
-    ...d,
-    Count:
-      counted[
-        d["Measure Domains (from Care Partner Outcome Measures)"] +
-          d["Intervention Setting"]
-      ],
+
+  const yVals = data.map((d) => d["Intervention Setting"]);
+  const emptyColData1 = yVals.map((y) => ({
+    "Intervention Setting": y,
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "Coping: Positive Strategies (PLWD)",
+    Count: 0,
   }));
-  const yVals = data;
-  // const emptyColData =
-  // Coping: Positive Strategies (PLWD)
+  const emptyColData2 = yVals.map((y) => ({
+    "Intervention Setting": y,
+    "Measure Domains (from Care Partner Outcome Measures)":
+      "Coping: Negative Strategies (PLWD)",
+    Count: 0,
+  }));
+
+  const finalData = [
+    ...splitStringsData.map((d) => ({
+      ...d,
+      Count:
+        counted[
+          d["Measure Domains (from Care Partner Outcome Measures)"] +
+            d["Intervention Setting"]
+        ],
+    })),
+    ...emptyColData1,
+    ...emptyColData2,
+  ];
 
   const heatMapSpec = {
     $schema: "https://vega.github.io/schema/vega-lite/v5.json",
@@ -70,24 +86,6 @@ function DashboardRoute() {
     config: {
       axis: {
         grid: true,
-        // gridWidth: { field: "Count" },
-        gridWidth: {
-          condition: {
-            test: {
-              field: "Measure Domains (from Care Partner Outcome Measures)",
-              equal: "Other",
-            },
-            // [
-            //   {
-            //     field: "Measure Domains (from Care Partner Outcome Measures)",
-            //     equal: "Stressor: Disability of PLWD: Functional",
-            //   },
-
-            // ],
-            value: 3,
-          },
-          value: 1,
-        },
         tickBand: "extent",
       },
     },
@@ -208,22 +206,6 @@ function DashboardRoute() {
           },
         },
       },
-
-      //
-      // {
-      //   mark: {
-      //     type: "line",
-      //     strokeWidth: 6,
-      //     stroke: "black",
-      //   },
-      //   encoding: {
-      //     x: {
-      //       datum: "Stressor: Disability of PLWD: Functional",
-      //       type: "ordinal",
-      //       // axis: { tickBand: "center" },
-      //     },
-      //   },
-      // },
     ],
   };
 
