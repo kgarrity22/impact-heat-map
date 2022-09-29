@@ -87,7 +87,7 @@ function DashboardRoute() {
       axis: {
         grid: true,
         tickBand: "extent",
-        labelFontSize: 16,
+        labelFontSize: 12,
         titleFontSize: 16,
       },
     },
@@ -110,7 +110,17 @@ function DashboardRoute() {
       y: {
         field: "Intervention Setting",
         type: "nominal",
-        sort: "-x",
+        sort: [
+          "Home",
+          "Home,&Telephone/Web-based",
+          "Hospital/Medical Center,&Home",
+          "Telephone/Web-based,&Hospital/Medical Center",
+          "Telephone/Web-based",
+          "Community Space",
+          "Community Space,&Telephone/Web-based",
+          "Community Space,&Home,&Hospital/Medical Center,&Telephone/Web-based",
+        ],
+
         axis: {
           titlePadding: 20,
           labelOffset: -16,
