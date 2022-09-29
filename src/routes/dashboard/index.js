@@ -182,6 +182,7 @@ function DashboardRoute() {
             },
             value: "lightgray",
           },
+          zindex: 3,
         },
       },
       tooltip: [
