@@ -201,11 +201,15 @@ function DashboardRoute() {
         mark: "rect",
         encoding: {
           color: {
-            condition: { test: "datum.Count <= 0", value: "lightgray" },
-            scale: { domainMin: 1 },
+            condition: { test: "datum.Count <= 0", value: "#F6F6F6" },
+            scale: {
+              domainMin: 1,
+              // scheme: "viridis"
+            },
             field: "Count",
             type: "quantitative",
             title: "Count of Records",
+            // sort: "descending",
           },
         },
       },
