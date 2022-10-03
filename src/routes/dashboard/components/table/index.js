@@ -12,6 +12,7 @@ let options = {
   resizable: false,
   virtualDomBuffer: 1000,
   tooltips: true,
+  layout: "fitDataFill",
 };
 
 let columns = [
@@ -19,7 +20,7 @@ let columns = [
     title: "Intervention Name",
     field: "Intervention Name",
     hozAlign: "left",
-    width: 340,
+    width: 300,
   },
   {
     title: "References",
@@ -37,7 +38,7 @@ let columns = [
     title: "Intervention Setting",
     field: "Intervention Setting",
     hozAlign: "Provider:Client Ratio",
-    width: 150,
+    width: 200,
   },
   {
     title: "# of Sessions",
@@ -49,31 +50,31 @@ let columns = [
     title: "Duration (in weeks)",
     field: "Duration (in weeks)",
     hozAlign: "left",
-    width: 150,
+    width: 200,
   },
   {
     title: "Session Length (in hours)",
     field: "Session Length (in hours)",
     hozAlign: "left",
-    width: 150,
+    width: 230,
   },
   {
     title: "Care Partner Outcome Measures",
     field: "Care Partner Outcome Measures",
     hozAlign: "left",
-    width: 150,
+    width: 300,
   },
   {
     title: "Measure Domains",
     field: "Measure Domains (from Care Partner Outcome Measures)",
     hozAlign: "left",
-    width: 150,
+    width: 200,
   },
   {
     title: "Person Living with Dementia Outcome Measures",
     field: "Person Living with Dementia Outcome Measures",
     hozAlign: "left",
-    width: 150,
+    width: 390,
   },
 ];
 
