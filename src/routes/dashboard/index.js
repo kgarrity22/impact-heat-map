@@ -95,13 +95,22 @@ function DashboardRoute() {
         field: "Intervention Setting",
         type: "nominal",
         sort: [
+          "Community Space",
           "Home",
+          "Hospital/Medical Center",
+          "Telephone/Web-based",
+
+          "Community Space,&Home",
+          "Community Space,&Telephone/Web-based",
           "Home,&Telephone/Web-based",
           "Hospital/Medical Center,&Home",
           "Telephone/Web-based,&Hospital/Medical Center",
-          "Telephone/Web-based",
-          "Community Space",
-          "Community Space,&Telephone/Web-based",
+
+          "Community Space,&Home,&Hospital/Medical Center",
+          "Community Space,&Home,&Telephone/Web-based",
+          "Community Space,&Hospital/Medical Center,&Telephone/Web-based",
+          "Home,&Hospital/Medical Center,&Telephone/Web-based",
+
           "Community Space,&Home,&Hospital/Medical Center,&Telephone/Web-based",
         ],
 
