@@ -51,20 +51,6 @@ function DashboardRoute() {
     return acc;
   }, {});
 
-  const yVals = data.map((d) => d["Intervention Setting"]);
-  const emptyColData1 = yVals.map((y) => ({
-    "Intervention Setting": y,
-    "Measure Domains (from Care Partner Outcome Measures)":
-      "Coping: Positive Strategies (PLWD)",
-    Count: 0,
-  }));
-  const emptyColData2 = yVals.map((y) => ({
-    "Intervention Setting": y,
-    "Measure Domains (from Care Partner Outcome Measures)":
-      "Coping: Negative Strategies (PLWD)",
-    Count: 0,
-  }));
-
   const finalData = [
     ...splitStringsData.map((d) => ({
       ...d,
@@ -74,8 +60,6 @@ function DashboardRoute() {
             d["Intervention Setting"]
         ],
     })),
-    ...emptyColData1,
-    ...emptyColData2,
   ];
 
   const heatMapSpec = {
@@ -152,8 +136,6 @@ function DashboardRoute() {
             "PLWD Health: Physical",
             "PLWD Health: Psychological",
             "Context: PLWD Resources (perceived social support)",
-            "Coping: Positive Strategies (PLWD)",
-            "Coping: Negative Strategies (PLWD)",
             "Institutionalization/Formal Care Utilization",
           ],
         },
