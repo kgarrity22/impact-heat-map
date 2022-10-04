@@ -102,7 +102,7 @@ function DashboardRoute() {
     data: {
       values: finalData,
     },
-    width: 1000,
+    width: 950,
     height: 600,
     config: {
       axis: {
@@ -112,7 +112,7 @@ function DashboardRoute() {
         titleFontSize: 16,
       },
     },
-    padding: { top: 100, bottom: 100, left: 0, right: 10 },
+    padding: { top: 100, bottom: 100, left: 0, right: 20 },
     transform: [
       {
         impute: "Count",
@@ -293,7 +293,7 @@ function DashboardRoute() {
         encoding: {
           text: { value: "Single Setting" },
           x: { value: -170 },
-          y: { value: 115 },
+          y: { value: 45 },
           angle: { value: -90 },
         },
       },
@@ -303,7 +303,7 @@ function DashboardRoute() {
         encoding: {
           text: { value: "Dual Setting" },
           x: { value: -170 },
-          y: { value: 370 },
+          y: { value: 270 },
           angle: { value: -90 },
         },
       },
@@ -331,7 +331,7 @@ function DashboardRoute() {
         mark: { type: "text", fontSize: 12 },
         encoding: {
           text: { value: "Both" },
-          x: { value: 710 },
+          x: { value: 680 },
           y: { value: -210 },
         },
       },
@@ -339,17 +339,10 @@ function DashboardRoute() {
         mark: { type: "text", fontSize: 12 },
         encoding: {
           text: { value: "PLWD Outcome" },
-          x: { value: 880 },
+          x: {
+            value: 860,
+          },
           y: { value: -210 },
-        },
-      },
-      {
-        mark: { type: "text", fontSize: 12 },
-        encoding: {
-          text: { value: "Single Setting" },
-          x: { value: -170 },
-          y: { value: 115 },
-          angle: { value: -90 },
         },
       },
     ],
