@@ -45,11 +45,42 @@ function DashboardRoute() {
       item["Measure Domains (from Care Partner Outcome Measures)"] +
       item["Intervention Setting"];
     if (!acc.hasOwnProperty(key)) {
-      acc[key] = 0;
+      acc[key] = 1;
     }
     acc[key] += 1;
     return acc;
   }, {});
+
+  const settings = {
+    0: "Single Setting",
+    1: "Dual Setting",
+    2: "Triple Setting",
+    3: "Quad Setting",
+  };
+
+  const measures = {
+    "Appraisal: Objective Burden": "Care Partner Outcomes",
+    "Appraisal: Subjective Burden": "Care Partner Outcomes",
+    "Appraisal: Satisfaction": "Care Partner Outcomes",
+    "Care Partner Internal Resources": "Care Partner Outcomes",
+    "Care Partner Health: Physical": "Care Partner Outcomes",
+    "Care Partner Health: Psychological": "Care Partner Outcomes",
+    "Context: Care Partner Beliefs on Providing Care (familism)":
+      "Care Partner Outcomes",
+    "Context: Care Partner Resources (perceived social support)":
+      "Care Partner Outcomes",
+    "Coping: Positive Strategies": "Care Partner Outcomes",
+    "Coping: Negative Strategies": "Care Partner Outcomes",
+    "Stressor: Disability of PLWD: Behavioral": "Care Partner Outcomes",
+    "Stressor: Disability of PLWD: Functional": "Care Partner Outcomes",
+    "Relationship Quality": "Both",
+    "Quality of Life/Well-being": "Both",
+    Other: "Both",
+    "PLWD Health: Physical": "PLWD Outcome",
+    "PLWD Health: Psychological": "PLWD Outcome",
+    "Context: PLWD Resources (perceived social support)": "PLWD Outcome",
+    "Institutionalization/Formal Care Utilization": "PLWD Outcome",
+  };
 
   const finalData = [
     ...splitStringsData.map((d) => ({
@@ -59,6 +90,10 @@ function DashboardRoute() {
           d["Measure Domains (from Care Partner Outcome Measures)"] +
             d["Intervention Setting"]
         ],
+      settingGroup:
+        settings[(d["Intervention Setting"].match(/&/g) || []).length],
+      measureGroup:
+        measures[d["Measure Domains (from Care Partner Outcome Measures)"]],
     })),
   ];
 
@@ -67,6 +102,8 @@ function DashboardRoute() {
     data: {
       values: finalData,
     },
+    width: 500,
+    height: 500,
     config: {
       axis: {
         grid: true,
@@ -79,7 +116,7 @@ function DashboardRoute() {
     transform: [
       {
         impute: "Count",
-        groupby: ["Intervention Setting"],
+        groupby: ["Intervention Setting", "settingGroup", "measureGroup"],
         key: "Measure Domains (from Care Partner Outcome Measures)",
         value: 0,
       },
@@ -88,8 +125,9 @@ function DashboardRoute() {
         as: "Intervention Setting Tooltip",
       },
     ],
-    height: 400,
-    width: "container",
+    mark: "rect",
+    // height: 400,
+    // width: "container",
     encoding: {
       y: {
         field: "Intervention Setting",
@@ -126,27 +164,7 @@ function DashboardRoute() {
         title: "Measure Domains",
         type: "ordinal",
         scale: {
-          domain: [
-            "Appraisal: Objective Burden",
-            "Appraisal: Subjective Burden",
-            "Appraisal: Satisfaction",
-            "Care Partner Internal Resources",
-            "Care Partner Health: Physical",
-            "Care Partner Health: Psychological",
-            "Context: Care Partner Beliefs on Providing Care (familism)",
-            "Context: Care Partner Resources (perceived social support)",
-            "Coping: Positive Strategies",
-            "Coping: Negative Strategies",
-            "Stressor: Disability of PLWD: Behavioral",
-            "Stressor: Disability of PLWD: Functional",
-            "Relationship Quality",
-            "Quality of Life/Well-being",
-            "Other",
-            "PLWD Health: Physical",
-            "PLWD Health: Psychological",
-            "Context: PLWD Resources (perceived social support)",
-            "Institutionalization/Formal Care Utilization",
-          ],
+          domain: Object.keys(measures),
         },
         axis: {
           orient: "top",
@@ -187,24 +205,24 @@ function DashboardRoute() {
           title: "Intervention Setting",
         },
       ],
+      row: {
+        field: "settingGroup",
+        sort: ["Single Setting", "Dual Setting", "Quad Setting"],
+      },
+      // column: { field: "measureGroup" },
+      fill: {
+        condition: { test: "datum.Count <= 0", value: "#F6F6F6" },
+        scale: {
+          domainMin: 1,
+          // scheme: "viridis"
+        },
+        field: "Count",
+        type: "quantitative",
+        title: "Count of Records",
+        // sort: "descending",
+      },
     },
     layer: [
-      {
-        mark: "rect",
-        encoding: {
-          color: {
-            condition: { test: "datum.Count <= 0", value: "#F6F6F6" },
-            scale: {
-              domainMin: 1,
-              // scheme: "viridis"
-            },
-            field: "Count",
-            type: "quantitative",
-            title: "Count of Records",
-            // sort: "descending",
-          },
-        },
-      },
       {
         mark: { type: "text", fontStyle: "bold", fontSize: 16 },
         encoding: {
@@ -216,6 +234,7 @@ function DashboardRoute() {
         },
       },
     ],
+    resolve: { scale: { y: "independent" } },
   };
 
   const [open, setOpen] = useState(false);
