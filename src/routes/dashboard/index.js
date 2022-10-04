@@ -166,6 +166,9 @@ function DashboardRoute() {
             },
             value: 10,
           },
+          // labelAlign: {
+          //   // "top",
+          // },
           labelAlign: "top",
           labelPadding: {
             condition: {
@@ -301,6 +304,16 @@ function DashboardRoute() {
           text: { value: "Dual Setting" },
           x: { value: -170 },
           y: { value: 370 },
+          angle: { value: -90 },
+        },
+      },
+
+      {
+        mark: { type: "text", fontSize: 12 },
+        encoding: {
+          text: { value: "Quad Setting" },
+          x: { value: -170 },
+          y: { value: 565 },
           angle: { value: -90 },
         },
       },
