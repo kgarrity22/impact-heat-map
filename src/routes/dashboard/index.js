@@ -102,8 +102,8 @@ function DashboardRoute() {
     data: {
       values: finalData,
     },
-    width: 500,
-    height: 500,
+    width: "container",
+    height: 600,
     config: {
       axis: {
         grid: true,
@@ -114,20 +114,17 @@ function DashboardRoute() {
     },
     padding: { top: 100, bottom: 100, left: 0, right: 10 },
     transform: [
-      {
-        impute: "Count",
-        groupby: ["Intervention Setting", "settingGroup", "measureGroup"],
-        key: "Measure Domains (from Care Partner Outcome Measures)",
-        value: 0,
-      },
+      // {
+      //   impute: "Count",
+      //   groupby: ["Intervention Setting"],
+      //   key: "Measure Domains (from Care Partner Outcome Measures)",
+      //   value: 0,
+      // },
       {
         calculate: "join(split(datum['Intervention Setting'], '&'), ' ')",
         as: "Intervention Setting Tooltip",
       },
     ],
-    mark: "rect",
-    // height: 400,
-    // width: "container",
     encoding: {
       y: {
         field: "Intervention Setting",
@@ -151,12 +148,39 @@ function DashboardRoute() {
 
           "Community Space,&Home,&Hospital/Medical Center,&Telephone/Web-based",
         ],
-
         axis: {
-          titlePadding: 20,
-          labelOffset: -16,
+          titlePadding: 100,
+          labelOffset: -16, // make this conditional
           // for wrapping strings
           labelExpr: "split(datum.label, '&')",
+          tickSize: {
+            condition: {
+              test: {
+                field: "value",
+                oneOf: [
+                  "Telephone/Web-based",
+                  "Telephone/Web-based,&Hospital/Medical Center",
+                ],
+              },
+              value: 140,
+            },
+            value: 10,
+          },
+          labelAlign: "top",
+          labelPadding: {
+            condition: {
+              test: {
+                field: "value",
+                oneOf: [
+                  "Telephone/Web-based",
+                  "Telephone/Web-based,&Hospital/Medical Center",
+                ],
+              },
+              value: -70,
+            },
+            value: 70,
+          },
+          zindex: 3,
         },
       },
       x: {
@@ -168,9 +192,11 @@ function DashboardRoute() {
         },
         axis: {
           orient: "top",
-          labelAngle: -45,
+          // labelAngle: -45,
           labelLimit: 1000,
           titlePadding: 80,
+          tickSize: 20,
+          labelPadding: -10,
           gridWidth: {
             condition: {
               test: {
@@ -205,24 +231,41 @@ function DashboardRoute() {
           title: "Intervention Setting",
         },
       ],
-      row: {
-        field: "settingGroup",
-        sort: ["Single Setting", "Dual Setting", "Quad Setting"],
-      },
-      // column: { field: "measureGroup" },
-      fill: {
-        condition: { test: "datum.Count <= 0", value: "#F6F6F6" },
-        scale: {
-          domainMin: 1,
-          // scheme: "viridis"
-        },
-        field: "Count",
-        type: "quantitative",
-        title: "Count of Records",
-        // sort: "descending",
-      },
+      // row: {
+      //   field: "settingGroup",
+      //   sort: ["Single Setting", "Dual Setting", "Quad Setting"],
+      // },
+      // color: {
+      //   condition: { test: "datum.Count <= 0", value: "#F6F6F6" },
+      //   scale: {
+      //     domainMin: 1,
+      //     // scheme: "viridis"
+      //   },
+      //   field: "Count",
+      //   type: "quantitative",
+      //   title: "Count of Records",
+      //   // sort: "descending",
+      // },
+      // text: { field: "Count", type: "quantitative" },
+      column: { field: "measureGroup" },
     },
     layer: [
+      {
+        mark: "rect",
+        encoding: {
+          color: {
+            condition: { test: "datum.Count <= 0", value: "#F6F6F6" },
+            scale: {
+              domainMin: 1,
+              // scheme: "viridis"
+            },
+            field: "Count",
+            type: "quantitative",
+            title: "Count of Records",
+            // sort: "descending",
+          },
+        },
+      },
       {
         mark: { type: "text", fontStyle: "bold", fontSize: 16 },
         encoding: {
@@ -233,8 +276,40 @@ function DashboardRoute() {
           },
         },
       },
+
+      {
+        mark: { type: "text", fontSize: 12 },
+        encoding: {
+          text: { value: "Single Setting" },
+          x: { value: -170 },
+          y: { value: 115 },
+          angle: { value: -90 },
+        },
+      },
+
+      {
+        mark: { type: "text", fontSize: 12 },
+        encoding: {
+          text: { value: "Double Setting" },
+          x: { value: -170 },
+          y: { value: 370 },
+          angle: { value: -90 },
+        },
+      },
+
+      {
+        mark: { type: "text", fontSize: 12 },
+        encoding: {
+          text: { value: "Quad Setting" },
+          x: { value: -170 },
+          y: { value: 565 },
+          angle: { value: -90 },
+        },
+      },
     ],
-    resolve: { scale: { y: "independent" } },
+    // resolve: {
+    //   scale: { y: "independent", x: "independent" },
+    // },
   };
 
   const [open, setOpen] = useState(false);
@@ -245,6 +320,7 @@ function DashboardRoute() {
 
   const handleClick = (_unused, item) => {
     if (item.datum) {
+      console.log("item, item.datum: ", item, item.datum);
       const x =
         item.datum["Measure Domains (from Care Partner Outcome Measures)"];
       const y = item.datum["Intervention Setting"];
