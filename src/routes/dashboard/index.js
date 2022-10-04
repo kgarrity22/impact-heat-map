@@ -166,10 +166,7 @@ function DashboardRoute() {
             },
             value: 10,
           },
-          // labelAlign: {
-          //   // "top",
-          // },
-          labelAlign: "top",
+          labelAlign: "right",
           labelPadding: {
             condition: {
               test: {
@@ -179,9 +176,9 @@ function DashboardRoute() {
                   "Telephone/Web-based,&Hospital/Medical Center",
                 ],
               },
-              value: -70,
+              value: -130,
             },
-            value: 70,
+            value: 0,
           },
         },
       },
@@ -293,7 +290,7 @@ function DashboardRoute() {
         encoding: {
           text: { value: "Single Setting" },
           x: { value: -170 },
-          y: { value: 45 },
+          y: { value: 100 },
           angle: { value: -90 },
         },
       },
@@ -303,7 +300,7 @@ function DashboardRoute() {
         encoding: {
           text: { value: "Dual Setting" },
           x: { value: -170 },
-          y: { value: 270 },
+          y: { value: 370 },
           angle: { value: -90 },
         },
       },
