@@ -65,9 +65,9 @@ function DashboardRoute() {
     "Care Partner Internal Resources": "Care Partner Outcomes",
     "Care Partner Health: Physical": "Care Partner Outcomes",
     "Care Partner Health: Psychological": "Care Partner Outcomes",
-    "Context: Care Partner Beliefs on Providing Care (familism)":
+    "Context: Care Partner Beliefs on % Providing Care (familism)":
       "Care Partner Outcomes",
-    "Context: Care Partner Resources (perceived social support)":
+    "Context: Care Partner Resources % (perceived social support)":
       "Care Partner Outcomes",
     "Coping: Positive Strategies": "Care Partner Outcomes",
     "Coping: Negative Strategies": "Care Partner Outcomes",
@@ -78,7 +78,7 @@ function DashboardRoute() {
     Other: "Both",
     "PLWD Health: Physical": "PLWD Outcome",
     "PLWD Health: Psychological": "PLWD Outcome",
-    "Context: PLWD Resources (perceived social support)": "PLWD Outcome",
+    "Context: PLWD Resources % (perceived social support)": "PLWD Outcome",
     "Institutionalization/Formal Care Utilization": "PLWD Outcome",
   };
 
@@ -191,10 +191,10 @@ function DashboardRoute() {
         },
         axis: {
           orient: "top",
-          // labelAngle: -85,
           labelLimit: 1000,
-          titlePadding: 140,
-          // tickSize: 20,
+          titlePadding: 70,
+          labelExpr:
+            "datum.label.length > 40 ? split(datum.label, '% ') : datum.label",
           labelPadding: {
             condition: {
               test: {
@@ -248,23 +248,15 @@ function DashboardRoute() {
           field: "Intervention Setting Tooltip",
           title: "Intervention Setting",
         },
+        {
+          field: "settingGroup",
+          title: "Setting Group",
+        },
+        {
+          field: "measureGroup",
+          title: "Measure Group",
+        },
       ],
-      // row: {
-      //   field: "settingGroup",
-      //   sort: ["Single Setting", "Dual Setting", "Quad Setting"],
-      // },
-      // color: {
-      //   condition: { test: "datum.Count <= 0", value: "#F6F6F6" },
-      //   scale: {
-      //     domainMin: 1,
-      //     // scheme: "viridis"
-      //   },
-      //   field: "Count",
-      //   type: "quantitative",
-      //   title: "Count of Records",
-      //   // sort: "descending",
-      // },
-      // text: { field: "Count", type: "quantitative" },
       column: { field: "measureGroup" },
     },
     layer: [
@@ -275,12 +267,10 @@ function DashboardRoute() {
             condition: { test: "datum.Count <= 0", value: "#F6F6F6" },
             scale: {
               domainMin: 1,
-              // scheme: "viridis"
             },
             field: "Count",
             type: "quantitative",
             title: "Count of Records",
-            // sort: "descending",
           },
         },
       },
@@ -308,7 +298,7 @@ function DashboardRoute() {
       {
         mark: { type: "text", fontSize: 12 },
         encoding: {
-          text: { value: "Double Setting" },
+          text: { value: "Dual Setting" },
           x: { value: -170 },
           y: { value: 370 },
           angle: { value: -90 },
@@ -318,9 +308,34 @@ function DashboardRoute() {
       {
         mark: { type: "text", fontSize: 12 },
         encoding: {
-          text: { value: "Quad Setting" },
+          text: { value: "Care Partner Outcomes" },
+          x: { value: 300 },
+          y: { value: -210 },
+        },
+      },
+
+      {
+        mark: { type: "text", fontSize: 12 },
+        encoding: {
+          text: { value: "Both" },
+          x: { value: 710 },
+          y: { value: -210 },
+        },
+      },
+      {
+        mark: { type: "text", fontSize: 12 },
+        encoding: {
+          text: { value: "PLWD Outcome" },
+          x: { value: 880 },
+          y: { value: -210 },
+        },
+      },
+      {
+        mark: { type: "text", fontSize: 12 },
+        encoding: {
+          text: { value: "Single Setting" },
           x: { value: -170 },
-          y: { value: 565 },
+          y: { value: 115 },
           angle: { value: -90 },
         },
       },
