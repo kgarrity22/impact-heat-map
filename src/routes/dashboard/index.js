@@ -102,7 +102,7 @@ function DashboardRoute() {
     data: {
       values: finalData,
     },
-    width: "container",
+    width: 1000,
     height: 600,
     config: {
       axis: {
@@ -114,12 +114,12 @@ function DashboardRoute() {
     },
     padding: { top: 100, bottom: 100, left: 0, right: 10 },
     transform: [
-      // {
-      //   impute: "Count",
-      //   groupby: ["Intervention Setting"],
-      //   key: "Measure Domains (from Care Partner Outcome Measures)",
-      //   value: 0,
-      // },
+      {
+        impute: "Count",
+        groupby: ["Intervention Setting"],
+        key: "Measure Domains (from Care Partner Outcome Measures)",
+        value: 0,
+      },
       {
         calculate: "join(split(datum['Intervention Setting'], '&'), ' ')",
         as: "Intervention Setting Tooltip",
@@ -180,7 +180,6 @@ function DashboardRoute() {
             },
             value: 70,
           },
-          zindex: 3,
         },
       },
       x: {
@@ -192,11 +191,20 @@ function DashboardRoute() {
         },
         axis: {
           orient: "top",
-          // labelAngle: -45,
+          // labelAngle: -85,
           labelLimit: 1000,
-          titlePadding: 80,
-          tickSize: 20,
-          labelPadding: -10,
+          titlePadding: 140,
+          // tickSize: 20,
+          labelPadding: {
+            condition: {
+              test: {
+                field: "value",
+                oneOf: ["Other", "Stressor: Disability of PLWD: Functional"],
+              },
+              value: -235,
+            },
+            value: 0,
+          },
           gridWidth: {
             condition: {
               test: {
@@ -216,6 +224,16 @@ function DashboardRoute() {
               value: "gray",
             },
             value: "lightgray",
+          },
+          tickSize: {
+            condition: {
+              test: {
+                field: "value",
+                oneOf: ["Other", "Stressor: Disability of PLWD: Functional"],
+              },
+              value: 240,
+            },
+            value: 5,
           },
           zindex: 3,
         },
