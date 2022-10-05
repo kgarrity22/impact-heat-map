@@ -26,24 +26,50 @@ export const addClickSignal = (spec) => {
 };
 
 function DashboardRoute() {
+  const allXVals = data
+    .map((d) =>
+      d["Measure Domains (from Care Partner Outcome Measures)"].split(",")
+    )
+    .flat();
+  const allYVals = data.map((d) => d["Intervention Setting"]);
+  const allKeys = allXVals
+    .map((x) => {
+      return allYVals.map((y) => x + "!" + y);
+    })
+    .flat();
+
   const splitStringsData = data
     .map((datum) => {
       const xVals =
         datum["Measure Domains (from Care Partner Outcome Measures)"].split(
           ","
         );
+
       const splitData = xVals.map((val) => ({
         ...datum,
         "Measure Domains (from Care Partner Outcome Measures)": val,
       }));
+      // console.log("allkeyvals, splitdata: ", allKeyValsMap, splitData);
       return splitData;
     })
     .flat();
 
+  // const countObj = countList.map((c)=> ({[c]: }))
+  // console.log("count list: ", countList, countObj);
+  console.log("split data: ", splitStringsData);
+
+  const usedKeys = [];
   const counted = splitStringsData.reduce((acc, item) => {
     const key =
       item["Measure Domains (from Care Partner Outcome Measures)"] +
+      "!" +
       item["Intervention Setting"];
+    usedKeys.push(
+      item["Measure Domains (from Care Partner Outcome Measures)"] +
+        "!" +
+        item["Intervention Setting"]
+    );
+
     if (!acc.hasOwnProperty(key)) {
       acc[key] = 1;
     }
@@ -82,12 +108,29 @@ function DashboardRoute() {
     "Institutionalization/Formal Care Utilization": "PLWD Outcome",
   };
 
+  const extra = allKeys
+    .map((key) => {
+      if (!usedKeys.includes(key)) {
+        usedKeys.push(key);
+        const [x, y] = key.split("!");
+        return {
+          Count: 0,
+          "Measure Domains (from Care Partner Outcome Measures)": x,
+          "Intervention Setting": y,
+          settingGroup: settings[(y.match(/&/g) || []).length],
+          measureGroup: measures[x],
+        };
+      }
+    })
+    .filter((i) => i);
+
   const finalData = [
     ...splitStringsData.map((d) => ({
       ...d,
       Count:
         counted[
           d["Measure Domains (from Care Partner Outcome Measures)"] +
+            "!" +
             d["Intervention Setting"]
         ],
       settingGroup:
@@ -95,6 +138,7 @@ function DashboardRoute() {
       measureGroup:
         measures[d["Measure Domains (from Care Partner Outcome Measures)"]],
     })),
+    ...extra,
   ];
 
   const heatMapSpec = {
@@ -114,12 +158,12 @@ function DashboardRoute() {
     },
     padding: { top: 100, bottom: 100, left: 0, right: 20 },
     transform: [
-      {
-        impute: "Count",
-        groupby: ["Intervention Setting"],
-        key: "Measure Domains (from Care Partner Outcome Measures)",
-        value: 0,
-      },
+      // {
+      //   impute: "Count",
+      //   groupby: ["Intervention Setting"],
+      //   key: "Measure Domains (from Care Partner Outcome Measures)",
+      //   value: 0,
+      // },
       {
         calculate: "join(split(datum['Intervention Setting'], '&'), ' ')",
         as: "Intervention Setting Tooltip",
@@ -356,7 +400,6 @@ function DashboardRoute() {
 
   const handleClick = (_unused, item) => {
     if (item.datum) {
-      console.log("item, item.datum: ", item, item.datum);
       const x =
         item.datum["Measure Domains (from Care Partner Outcome Measures)"];
       const y = item.datum["Intervention Setting"];
@@ -365,7 +408,7 @@ function DashboardRoute() {
         (d) =>
           d["Measure Domains (from Care Partner Outcome Measures)"].includes(
             x
-          ) && d["Intervention Setting"].includes(y)
+          ) && d["Intervention Setting"] === y
       );
 
       setTableData(td);
