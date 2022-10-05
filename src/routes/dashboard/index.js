@@ -49,14 +49,9 @@ function DashboardRoute() {
         ...datum,
         "Measure Domains (from Care Partner Outcome Measures)": val,
       }));
-      // console.log("allkeyvals, splitdata: ", allKeyValsMap, splitData);
       return splitData;
     })
     .flat();
-
-  // const countObj = countList.map((c)=> ({[c]: }))
-  // console.log("count list: ", countList, countObj);
-  console.log("split data: ", splitStringsData);
 
   const usedKeys = [];
   const counted = splitStringsData.reduce((acc, item) => {
@@ -158,15 +153,14 @@ function DashboardRoute() {
     },
     padding: { top: 100, bottom: 100, left: 0, right: 20 },
     transform: [
-      // {
-      //   impute: "Count",
-      //   groupby: ["Intervention Setting"],
-      //   key: "Measure Domains (from Care Partner Outcome Measures)",
-      //   value: 0,
-      // },
       {
         calculate: "join(split(datum['Intervention Setting'], '&'), ' ')",
         as: "Intervention Setting Tooltip",
+      },
+      {
+        calculate:
+          "join(split(datum['Measure Domains (from Care Partner Outcome Measures)'], '%'), ' ')",
+        as: "Measure Domain Tooltip",
       },
     ],
     encoding: {
@@ -285,7 +279,7 @@ function DashboardRoute() {
       tooltip: [
         { field: "Count" },
         {
-          field: "Measure Domains (from Care Partner Outcome Measures)",
+          field: "Measure Domain Tooltip",
           title: "Measure Domains",
         },
         {
@@ -303,6 +297,7 @@ function DashboardRoute() {
       ],
       column: { field: "measureGroup" },
     },
+    // text layer
     layer: [
       {
         mark: "rect",
@@ -328,7 +323,6 @@ function DashboardRoute() {
           },
         },
       },
-
       {
         mark: { type: "text", fontSize: 12 },
         encoding: {
@@ -338,7 +332,6 @@ function DashboardRoute() {
           angle: { value: -90 },
         },
       },
-
       {
         mark: { type: "text", fontSize: 12 },
         encoding: {
@@ -387,9 +380,6 @@ function DashboardRoute() {
         },
       },
     ],
-    // resolve: {
-    //   scale: { y: "independent", x: "independent" },
-    // },
   };
 
   const [open, setOpen] = useState(false);
