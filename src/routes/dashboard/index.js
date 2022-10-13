@@ -41,22 +41,11 @@ function DashboardRoute() {
       ),
     ],
   }));
-  console.log("NEW DATA: ", newData); // this is the concatenated data --> without duplicates
-
-  // now we want to find every x - y pair
 
   // all non-unique x vals
   const allXVals = newData.map((d) => d.Measure).flat();
   // all non-unique y vals
   const allYVals = newData.map((d) => d["Intervention Setting"]);
-
-  const obj = {};
-  // have the arrays with each record
-  // for each y go through the data set
-  console.log("OBJECT CHECK: ", obj);
-
-  // if the record is equal to that y
-  // find the item in the counter for each x
 
   // all unique keys
   const allKeys = [
@@ -68,14 +57,6 @@ function DashboardRoute() {
         .flat()
     ),
   ];
-  allKeys.forEach((key) => (obj[key] = 0));
-  for (let datum of newData) {
-    for (let m of datum.Measure) {
-      const key = m + "!" + datum["Intervention Setting"];
-      obj[key] += 1;
-    }
-  }
-  console.log("OBJECT: ", obj);
 
   const splitStringsData = newData
     .map((datum) => {
@@ -101,8 +82,6 @@ function DashboardRoute() {
     counter[key] += 1;
     usedKeys.push(item["Measure Domains"] + "!" + item["Intervention Setting"]);
   });
-
-  console.log("COUNTER: ", counter);
 
   const settings = {
     0: "Single Setting",
@@ -182,7 +161,7 @@ function DashboardRoute() {
     padding: { top: 100, bottom: 100, left: 0, right: 20 },
     transform: [
       {
-        calculate: "join(split(datum['Intervention Setting'], '&'), ' ')",
+        calculate: "join(split(datum['Intervention Setting'], ','), ' ')",
         as: "Intervention Setting Tooltip",
       },
       {
@@ -345,7 +324,7 @@ function DashboardRoute() {
         encoding: {
           text: { field: "Count", type: "quantitative" },
           color: {
-            condition: { test: "datum['Count'] < 7", value: "black" },
+            condition: { test: "datum['Count'] < 3", value: "black" },
             value: "white",
           },
         },
