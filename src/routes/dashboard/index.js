@@ -112,11 +112,11 @@ function DashboardRoute() {
     "Relationship Quality": "Both",
     "Quality of Life/Well-being": "Both",
     Other: "Both",
-    "Coping: Positive Strategies (PLWD)": "PLWD Outcome",
-    "Coping: Negative Strategies (PLWD)": "PLWD Outcome",
     "PLWD Health: Physical": "PLWD Outcome",
     "PLWD Health: Psychological": "PLWD Outcome",
     "Context: PLWD Resources % (perceived social support)": "PLWD Outcome",
+    "Coping: Positive Strategies (PLWD)": "PLWD Outcome",
+    "Coping: Negative Strategies (PLWD)": "PLWD Outcome",
     "Institutionalization/Formal Care Utilization": "PLWD Outcome",
   };
 
@@ -375,7 +375,7 @@ function DashboardRoute() {
         mark: { type: "text", fontSize: 12 },
         encoding: {
           text: { value: "Both" },
-          x: { value: 680 },
+          x: { value: 610 },
           y: { value: -210 },
         },
       },
@@ -384,7 +384,7 @@ function DashboardRoute() {
         encoding: {
           text: { value: "PLWD Outcome" },
           x: {
-            value: 860,
+            value: 820,
           },
           y: { value: -210 },
         },
