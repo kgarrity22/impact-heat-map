@@ -39,15 +39,24 @@ function DashboardRoute() {
             ].split(",")
           )
       ),
-    ].toString(),
+    ],
   }));
   console.log("NEW DATA: ", newData); // this is the concatenated data --> without duplicates
+
   // now we want to find every x - y pair
 
   // all non-unique x vals
-  const allXVals = newData.map((d) => d.Measure.split(",")).flat();
+  const allXVals = newData.map((d) => d.Measure).flat();
   // all non-unique y vals
   const allYVals = newData.map((d) => d["Intervention Setting"]);
+
+  const obj = {};
+  // have the arrays with each record
+  // for each y go through the data set
+  console.log("OBJECT CHECK: ", obj);
+
+  // if the record is equal to that y
+  // find the item in the counter for each x
 
   // all unique keys
   const allKeys = [
@@ -59,10 +68,18 @@ function DashboardRoute() {
         .flat()
     ),
   ];
+  allKeys.forEach((key) => (obj[key] = 0));
+  for (let datum of newData) {
+    for (let m of datum.Measure) {
+      const key = m + "!" + datum["Intervention Setting"];
+      obj[key] += 1;
+    }
+  }
+  console.log("OBJECT: ", obj);
 
   const splitStringsData = newData
     .map((datum) => {
-      const xVals = datum.Measure.split(",");
+      const xVals = datum.Measure;
 
       const splitData = xVals.map((val) => ({
         ...datum,
