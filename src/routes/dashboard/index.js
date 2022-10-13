@@ -26,51 +26,66 @@ export const addClickSignal = (spec) => {
 };
 
 function DashboardRoute() {
-  const allXVals = data
-    .map((d) =>
-      d["Measure Domains (from Care Partner Outcome Measures)"].split(",")
-    )
-    .flat();
-  const allYVals = data.map((d) => d["Intervention Setting"]);
-  const allKeys = allXVals
-    .map((x) => {
-      return allYVals.map((y) => x + "!" + y);
-    })
-    .flat();
+  // do the data before hand --> convert it to an array here
+  const newData = data.map((d) => ({
+    ...d,
+    Measure: [
+      ...new Set(
+        d["Measure Domains (from Care Partner Outcome Measures)"]
+          .split(",")
+          .concat(
+            d[
+              "Measure Domains (from Person Living with Dementia Outcome Measures)"
+            ].split(",")
+          )
+      ),
+    ].toString(),
+  }));
+  console.log("NEW DATA: ", newData); // this is the concatenated data --> without duplicates
+  // now we want to find every x - y pair
 
-  const splitStringsData = data
+  // all non-unique x vals
+  const allXVals = newData.map((d) => d.Measure.split(",")).flat();
+  // all non-unique y vals
+  const allYVals = newData.map((d) => d["Intervention Setting"]);
+
+  // all unique keys
+  const allKeys = [
+    ...new Set(
+      allXVals
+        .map((x) => {
+          return allYVals.map((y) => x + "!" + y);
+        })
+        .flat()
+    ),
+  ];
+
+  const splitStringsData = newData
     .map((datum) => {
-      const xVals =
-        datum["Measure Domains (from Care Partner Outcome Measures)"].split(
-          ","
-        );
+      const xVals = datum.Measure.split(",");
 
       const splitData = xVals.map((val) => ({
         ...datum,
-        "Measure Domains (from Care Partner Outcome Measures)": val,
+        "Measure Domains": val,
       }));
       return splitData;
     })
     .flat();
 
   const usedKeys = [];
-  const counted = splitStringsData.reduce((acc, item) => {
-    const key =
-      item["Measure Domains (from Care Partner Outcome Measures)"] +
-      "!" +
-      item["Intervention Setting"];
-    usedKeys.push(
-      item["Measure Domains (from Care Partner Outcome Measures)"] +
-        "!" +
-        item["Intervention Setting"]
-    );
+  const counter = {};
 
-    if (!acc.hasOwnProperty(key)) {
-      acc[key] = 1;
-    }
-    acc[key] += 1;
-    return acc;
-  }, {});
+  allKeys.forEach((key) => {
+    counter[key] = 0;
+  });
+
+  splitStringsData.forEach((item) => {
+    const key = item["Measure Domains"] + "!" + item["Intervention Setting"];
+    counter[key] += 1;
+    usedKeys.push(item["Measure Domains"] + "!" + item["Intervention Setting"]);
+  });
+
+  console.log("COUNTER: ", counter);
 
   const settings = {
     0: "Single Setting",
@@ -97,6 +112,8 @@ function DashboardRoute() {
     "Relationship Quality": "Both",
     "Quality of Life/Well-being": "Both",
     Other: "Both",
+    "Coping: Positive Strategies (PLWD)": "PLWD Outcome",
+    "Coping: Negative Strategies (PLWD)": "PLWD Outcome",
     "PLWD Health: Physical": "PLWD Outcome",
     "PLWD Health: Psychological": "PLWD Outcome",
     "Context: PLWD Resources % (perceived social support)": "PLWD Outcome",
@@ -110,7 +127,7 @@ function DashboardRoute() {
         const [x, y] = key.split("!");
         return {
           Count: 0,
-          "Measure Domains (from Care Partner Outcome Measures)": x,
+          "Measure Domains": x,
           "Intervention Setting": y,
           settingGroup: settings[(y.match(/&/g) || []).length],
           measureGroup: measures[x],
@@ -122,16 +139,10 @@ function DashboardRoute() {
   const finalData = [
     ...splitStringsData.map((d) => ({
       ...d,
-      Count:
-        counted[
-          d["Measure Domains (from Care Partner Outcome Measures)"] +
-            "!" +
-            d["Intervention Setting"]
-        ],
+      Count: counter[d["Measure Domains"] + "!" + d["Intervention Setting"]],
       settingGroup:
         settings[(d["Intervention Setting"].match(/&/g) || []).length],
-      measureGroup:
-        measures[d["Measure Domains (from Care Partner Outcome Measures)"]],
+      measureGroup: measures[d["Measure Domains"]],
     })),
     ...extra,
   ];
@@ -158,8 +169,7 @@ function DashboardRoute() {
         as: "Intervention Setting Tooltip",
       },
       {
-        calculate:
-          "join(split(datum['Measure Domains (from Care Partner Outcome Measures)'], '%'), ' ')",
+        calculate: "join(split(datum['Measure Domains'], '%'), ' ')",
         as: "Measure Domain Tooltip",
       },
     ],
@@ -221,7 +231,7 @@ function DashboardRoute() {
         },
       },
       x: {
-        field: "Measure Domains (from Care Partner Outcome Measures)",
+        field: "Measure Domains",
         title: "Measure Domains",
         type: "ordinal",
         scale: {
@@ -390,15 +400,11 @@ function DashboardRoute() {
 
   const handleClick = (_unused, item) => {
     if (item.datum) {
-      const x =
-        item.datum["Measure Domains (from Care Partner Outcome Measures)"];
+      const x = item.datum["Measure Domains"];
       const y = item.datum["Intervention Setting"];
 
-      const td = data.filter(
-        (d) =>
-          d["Measure Domains (from Care Partner Outcome Measures)"].includes(
-            x
-          ) && d["Intervention Setting"] === y
+      const td = newData.filter(
+        (d) => d["Measure"].includes(x) && d["Intervention Setting"] === y
       );
 
       setTableData(td);
