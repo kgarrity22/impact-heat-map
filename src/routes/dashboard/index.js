@@ -39,7 +39,7 @@ function DashboardRoute() {
             ].split(",")
           )
       ),
-    ],
+    ].filter((i) => i !== ""),
   }));
 
   // all non-unique x vals
